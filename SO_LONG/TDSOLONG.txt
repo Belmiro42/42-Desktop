@@ -1,0 +1,88 @@
+**TODO**
+
+**NOTES**
+	•open
+	•close
+	•read
+	•write
+	•malloc
+	•free
+	•perror
+	•strerror
+	•exit
+	•librería math (flag del compilador -lm, man 3 math)
+	•MLX
+		Initialization and Window Management
+
+			mlx_init()
+				Initializes the connection between the software and the display server.
+
+			mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title)
+				Creates a new window with the specified width, height, and title.
+
+			mlx_destroy_window(void *mlx_ptr, void *win_ptr)
+				Destroys the specified window.
+
+		Image Handling
+
+			mlx_new_image(void *mlx_ptr, int width, int height)
+				Creates a new image with the specified width and height.
+
+			mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian)
+				Returns information about the created image, including its memory address, bits per pixel, size of each line, and endian-ness.
+
+			mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y)
+				Displays an image at the specified coordinates within a window.
+
+			mlx_destroy_image(void *mlx_ptr, void *img_ptr)
+				Destroys the specified image.
+
+			mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height)
+				Loads an XPM image from a file and returns a pointer to the image.
+
+			mlx_xpm_to_image(void *mlx_ptr, char **xpm_data, int *width, int *height)
+				Converts XPM data directly into an image.
+
+		Drawing Functions
+
+			mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color)
+				Puts a pixel of a specified color at the given coordinates in the window.
+
+			mlx_clear_window(void *mlx_ptr, void *win_ptr)
+				Clears the entire window.
+
+		Text Functions
+			mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string)
+				Displays a string of text at the specified coordinates in the window, with the specified color.
+
+		Event Handling
+
+			mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)
+				Sets up an event handler for a specified event.
+
+			mlx_loop_hook(void *mlx_ptr, int (*funct_ptr)(), void *param)
+				Sets up a hook to be called at each loop iteration.
+
+			mlx_loop(void *mlx_ptr)
+				Starts the event loop, keeping the window open and responsive to events.
+
+			mlx_key_hook(void *win_ptr, int (*funct_ptr)(), void *param)
+				Sets up a key press event handler.
+
+			mlx_mouse_hook(void *win_ptr, int (*funct_ptr)(), void *param)
+				Sets up a mouse click event handler.
+
+			mlx_expose_hook(void *win_ptr, int (*funct_ptr)(), void *param)
+				Sets up an expose event handler (when the window needs to be redrawn).
+
+		Keyboard and Mouse Events
+
+			mlx_do_key_autorepeatoff(void *mlx_ptr)
+				Disables automatic key repeat.
+
+			mlx_do_key_autorepeaton(void *mlx_ptr)
+				Enables automatic key repeat.
+
+			mlx_do_sync(void *mlx_ptr)
+				Synchronizes the graphics (flushes the output buffer).
+	•ft_printf

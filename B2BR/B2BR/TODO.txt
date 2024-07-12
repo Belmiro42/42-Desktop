@@ -1,0 +1,236 @@
+root pass: 		Rootpass123
+bmatosd:		123456789Bm
+encryption pass:	Encrypted123
+
+EVALUATION
+	SETUP
+		VIRTUAL MACHINES
+		1. WHAT IS A VIRTUAL MACHINE
+		2. HOW DOES A VIRTUAL MACHINE WORK
+		3. THE PURPOSE OF VIRTUAL MACHINES [¹]
+									A virtual machine is software that uses software instead of a physical
+									computer to run programs and apps. There are guest machines on host machines.
+									While host machines are limited by their physicality, eg, a host machone 
+									might be limited by physical RAM, however guest machines can share and
+									distribute resources often making them optimal for certain tasks. Each VM runs
+									its own operating system. 
+									
+									At the moment operating VMs on the cloud is all the rage, meaning you can 
+									provide different functions with less computing and more flexibility and at
+									a lower cost. Possible uses are to test applications in a closed environment 
+									where it cant affect data or processes on a host computer.
+									
+									Advantages:
+									- Can run multiple OSs on the same computer
+									- Integration with legacy systems
+									- Disaster recovery
+									- Application Provision options
+									
+									Disadvantages
+									- Running multiplle OSs on the same system environments means you need to 
+									balance resources
+									- Less efficient than a computer and so use a mix of physical and virtual
+									infrastructure
+									
+									Two Types of Virtual Machines
+									1. Process Virtual Machine - Apllications that make platform independent 
+									programming environments
+									2. System Virtual Machine - A fully realised copy of a virtual machine with 
+									an OS
+									
+									Five Types of Virtual Machines
+									1. Hardware Virt. Big machine that is a fat OS or series of OSs, communicates
+									directly with physical resources. 
+									2. Software Virt. Software being hosted within other host systems.
+									3. Storage Virt. Multiple storage units united by a virtual machine
+									4. Network Virt. A single device acting as a network
+									5. Desktop Virt. Make a remote desktop
+										
+		THE CHOICE OF OPERATING SYSTEM ROCKY VS DEBIAN
+		SELinux vs APPARMOR
+		YUM X DNF VS APT
+									
+									Rocky OS and Red Hat Enterprise Linux
+									Compatability with RHEL. The similarities between Rocky and RHEL mena that you 
+									can get acquainted with the system before paying for it.
+									
+									SELinux 
+									Both Rocky and Debian support SELinux but Rocky integrates it more closely
+									Other dependencies are available which enhance the Rocky SELinux experience
+									SELinux grants privileges based on  file labels whereas	AppArmor grants 
+									privileges based on file path I cant lie they identification of what privileges 
+									to grant is basically the  same basically the same.  However the foundations 
+									theyre built upon are slightly different. AppArmor collects log data and analyses
+									programs and port activity. Whereas SELinux has a reverse log where it logs what
+									they do, subjects, objects (without activity judgement) a server which makes
+									decisions  etc. Modes are also different where AppArmor can only log violations
+									and enforce policy. While SELinux can also enforce, it can also be disabled and
+									passive, it will log everything, not just violations and wont deny them.[³]
+									
+									
+									yum dnf vs apt
+									yum & dnf allow good version control for dependencies, they also have faster 
+									releases for their packages meaning access to better software [²]
+							
+														
+		APPTITUDE VS APT					These are both package managers.
+									Apt offers a command line interface while aptitude offers a visual interface
+									
+									when facing a problem apt will just stop while aptitude will attempt to offer 
+									advice on how to resolve the problem. [⁴]
+													
+		UFW STARTED						#####> sudo ufw status
+		SSH STARTED						#####> sudo service ssh status
+		DEBIAN STARTED						#####> uname -v		
+									
+		
+	USER
+		CHECK GROUPS OF USER					#####> getent group sudo / user42
+		CREATE A NEW USER¡					#####> sudo adduser (user)			
+		CREATE A NEW PASS FOLLOWING PASS POLICY			1M 1m 1n (!xxx) (!user)	
+		
+		
+		EXPLAIN HOW THEY SET UP PASSWORD RULES ON VM		install a module called pam_pwquality and then modifying it here
+									#####> nano /etc/pam.d/common-password
+		CREATE "EVALUATING" GROUP				#####> sudo addgroup evaluating					
+		ASSIGN TO NEW USER					#####> sudo adduser (user) evaluating
+		CHECK NEW USER IN EVALUATIng				#####> getent group evaluating
+									
+		ADVANTAGES OF THE PASSWORD POLICY [⁵]
+									Protects data - especially if working with privileged data
+									Identity Theft
+															
+		
+	HOSTNAME + PARTITIONS
+		HOSTNAME IS BMATOS-D4					#####> hostname
+		MODIFY HOSTNAME AND REPLACE W YOURS			#####> sudo hostnamectl set-hostname <newhostname>
+		
+		RESTART MACHINE						
+										
+		RESTORE MACHINE TO ORIGINAL HOSTNAME			#####> sudo hostnamectl set-hostname <newhostname>				
+		HOW TO VIEW PARTITIONS					#####> lsblk
+		
+		COMPARE TO THE PARTITIONS EXAMPLE IN THE SUBJECT
+									
+		HOW LVM WORKS[⁶]					Linux logical volume manager
+									Allows for dynamic volume resizing
+									Being able to add space annd physical drives without downtime
+									Consistent backups by taking snapshots of the volume
+																
+	
+	SUDO
+		CHECK SUDO IS INSTALLED					#####> sudo -V (which sudo) (dpkg -s sudo)
+		ASSIGN EVALUATOR USER TO SUDO				#####> sudo adduser (user) sudo
+									
+		WHY USE SUDO[⁷]						efficient way to temporary grant root access	
+									
+		RULES FOR SUDO AND HOW TO IMPOSE THEM 			/etc/sudoers.d/sudo_config
+									requiretty ->require a privileged session to use sudo
+									
+		VERIFY /VAR/LOG/SUDO EXISTS AND HAS <= ONE FILE		#####> cd /var/log/sudo
+		CHECK CONTENTS OF THE LOG FILE				#####> cd & cat
+									
+		WHICH FILES CHANGE WHEN SUDO COMMAND RAN
+									cat /var/log/sudo
+									
+	UFW / FIREWALLD
+		CHECK UFW IS PROPERLY INSTALLED				#####> ufw -v (which ufw) (dpkg -s ufw)			
+		CHECK IT WORKS PROPERLY					#####> sudo service ufw status
+									#####> sudo ufw allow 8080
+									#####> sudo ufw status numbered	
+									#####> sudo ufw delete num_rule
+									#####> sudo systemctl enable ssh	// sudo systemctl start ssh
+									#####> sudo systemctl stop ssh 		// sudo systemctl disable ssh							
+									
+		WHAT IS UFW DOING [⁸]					FIREWALL BABY, check 
+
+									
+	SSH
+		CHECK SSH INSTALLED					#####> which shh 
+		CHECK ITS WORKING					#####> sudo service ssh status
+									
+		WHAT IS SSH AND WHAT IS THE VALUE
+											
+		VERIFY SSH ONLY USES PORT 4242				For this part we open /etc/ssh/sshd_config etc.
+									
+		USE SSH TO LOG IN WITH A NEW USER			
+		FORBIDDEN TO USE SSH WITH ROOT USER
+									
+									
+	
+	SCRIPT MONITORING
+		HOW THE SCRIPT WORKS					REVISE GUIDE
+									
+		WHAT IS CRON
+		https://en.wikipedia.org/wiki/Cron							
+									
+		10 MINS EXP
+		RUN EVERY MINUTE					#####> CHANGE 10 TO 1				
+		MAKE THE SCRIPT STOP 					#####> sudo /etc/init.d/cron stop / start
+		
+		RESTART SERVER	
+		
+		CHECK SCRIPT STILL EXISTS				#####> sudo crontab -u root -e	
+		PERMISSIONS REMAIN UNCHANGED				#####> ls -la
+									
+									
+	
+	
+	
+	
+	
+		
+	
+NVRAM File
+SELinux and DNF
+Diff between Debian and Rocky
+Domain (?)
+Partition
+LVM
+Volume
+Encrypted Volume
+SCSI3 (0,0,0)
+sda
+configured (partitions)
+file system
+mount points 
+"device to initialise its partition table"
+Guided Partitioning
+software RAID
+Logical Volume Manager
+iSCSI 
+Linux Device-mapper (crypt)
+f vs F vs K (?)
+swap area
+tmp - temporary files
+root - root file system
+usr - static data
+opt - add on applucation softwarre packages
+usr local - loca hierarchy
+home -user home directories
+var-log
+ex3 jour. fil. sys ext4 ext 2 btrfs Jfs xfs fat16 fat32 swaparea physical volume 
+in what case what you not use partition
+Installling the base system
+Debian dektop environment
+Gnome
+Xface
+Gnome Flashback
+KDE Plasma
+Cinnamon
+MATE
+LXDE
+LXQt
+Web server
+SSH Server
+Standard System Utilities
+GRUB BOOT
+
+[¹][VIRTUAL MACHINES](https://www.vmware.com/topics/glossary/content/virtual-machine.html)
+[²][GENERAL DIFFERENCES ROCKY DEBIAN](https://amadla.medium.com/debian-linux-vs-rocky-os-exploring-the-best-choice-for-your-server-dfd6b3d80c1a#:~:text=Package%20Management%20and%20Other%20Advantages&text=In%20contrast%2C%20Debian%20uses%20apt,and%20access%20to%20newer%20software.)
+[³][APPARMOR VS SELINUX](https://www.baeldung.com/linux/selinux-vs-apparmor#:~:text=In%20terms%20of%20controlling%20the,that%20are%20dependent%20on%20paths.)
+[⁴][APT VS APTITUDE](https://blog.packagecloud.io/know-the-difference-between-apt-and-aptitude/#:~:text=Apt%20offers%20a%20command%2Dline,of%20all%20available%20official%20packages)
+[⁵][PASSWORD POLICY](https://moxso.com/blog/benefits-of-a-password-policy#:~:text=Password%20policies%20will%20help%20you,unique%20passwords%20and%20password%20history.)
+[⁶][⁶](https://es.wikipedia.org/wiki/Logical_Volume_Manager_(Linux))
+[⁸][UFW](https://wiki.ubuntu.com/UncomplicatedFirewall#:~:text=The%20Uncomplicated%20Firewall%20(ufw)%20is,interface%20for%20manipulating%20the%20firewall.)
+

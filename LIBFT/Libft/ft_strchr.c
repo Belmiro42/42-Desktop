@@ -1,0 +1,41 @@
+	/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/12 00:33:58 by bmatos-d          #+#    #+#             */
+/*   Updated: 2024/03/28 20:01:08 by bmatos-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	index;
+
+	index = 0;
+	while (s[index] != (char)c)
+	{
+		index++;
+		if (s[index] == '\0' && (char)c != '\0')
+		{
+			return (0);
+		}
+	}
+	return ((char *)(s + index));
+}
+
+/*
+int main()
+{
+	char str[] = "asasd";
+	char *s;
+	char p;
+	s = ft_strchr(str, 'd');
+	p = *s;
+	write(1, &p, 1);
+}
+*/
