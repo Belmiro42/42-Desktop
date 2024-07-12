@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 21:54:25 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/09 20:47:32 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:39:40 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	make_nodes(t_node **node, char **argv, int index)
 //  └───────────────────────────────────────────────────────────────────────┘ 
 static char	*push_strjoin(char **argv, int *argc)
 {
-	static char	joined_str[60000];
+	static char	joined_str[70000];
 	size_t		parameter_counter;
 	size_t		joined_str_ind;
 	size_t		char_ind;
@@ -103,7 +103,7 @@ static char	*push_strjoin(char **argv, int *argc)
 //  └───────────────────────────────────────────────────────────────────────┘ 
 static char	**split(char *str, char delimiter, int *word_count)
 {
-	static char	words[5000][13];
+	static char	words[5000][14];
 	static char	*result[5000];
 	int			str_index;
 	int			letter;
@@ -121,7 +121,7 @@ static char	**split(char *str, char delimiter, int *word_count)
 			result[word_number] = words[word_number];
 			word_number_check(word_number++, &letter);
 		}
-		else if (letter < 11)
+		else if (letter < 12)
 			words[word_number][letter++] = str[str_index];
 	}
 	words[word_number][letter] = '\0';
