@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 02:44:52 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/12 22:39:25 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/14 02:07:56 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #include <unistd.h>
 #include <sys/time.h>
 
-typedef struct s_phil t_phil;
-typedef struct s_universal t_universal;
+typedef struct s_phil		t_phil;
+typedef struct s_universal	t_universal;
 
 typedef struct s_universal
 {
-	pthread_mutex_t print;
-	pthread_mutex_t *forks;
+	pthread_mutex_t	print;
+	pthread_mutex_t	*forks;
 	pthread_t		**philosophers;
 	t_phil			**structs;
 	int				phil_num;
@@ -43,16 +43,14 @@ typedef struct s_phil
 	int				eat_count;
 }	t_phil;
 
-
-long unsigned	get_time();
-void			free_string(char **argv);
+long unsigned	get_time(void);
+int				free_string(char **argv);
 size_t			phil_strlen(const char *s);
 size_t			phil_strlcpy(char *dst, const char *src, size_t buff_size);
 size_t			phil_strlcat(char *dst, const char *src, size_t buff_size);
-long unsigned	get_time();
 void			wait_till_start(t_phil *current);
 void			*philosopher(void *arg);
-void			my_exit(t_universal *global, int structs, int philosophers, int forks);
+void			my_exit(t_universal *global);
 char			**phil_split(char *s, char c, int *argc);
 void			parse_input(int *argc, char ***argv);
 void			create_threads(t_universal *global);

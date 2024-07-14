@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:40:12 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/12 22:51:47 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/14 02:56:10 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,50 @@
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							 LIBERATION									│
 //  ├───────────────────────────────────────────────────────────────────────┤
-static void phils_free(t_universal *global)
+static void	kill_phils(t_universal *global)
 {
-	int iterator;
-	
-	iterator = 0;
-	while (iterator != global->phil_num + 1)
-        free(global->philosophers[iterator++]);
-    free(global->philosophers);	
-}
-static void strus_free(t_universal *global)
-{	
-	int iterator;
+	int	i;
 
-	iterator = 0;
-	while (iterator != global->phil_num)
-        free(global->structs[iterator++]);
-    free(global->structs);
+	i = 0;
+	if (global->philosophers != NULL)
+		while (i <= global->phil_num)
+			if (global->philosophers[i] != NULL)
+				free(global->philosophers[i++]);
+	if (global->philosophers != NULL)
+		free(global->philosophers);
 }
-static void forks_free(t_universal *global)
+
+static void	kill_structs(t_universal *global)
 {
-	int iterator;
-	
-	iterator = 0;
-	while (iterator != global->phil_num + 1)
-        pthread_mutex_destroy(&global->forks[iterator++]);
-    free(global->forks);
+	int	i;
+
+	i = 0;
+	if (global->structs != NULL)
+		while (i < global->phil_num)
+			if (global->structs[i] != NULL)
+				free(global->structs[i++]);
+	if (global->structs != NULL)
+		free(global->structs);
 }
-void my_exit(t_universal *global, int structs, int philosophers, int forks)
+
+static void	kill_forks(t_universal *global)
 {
-	if (forks != -1)
-		forks_free(global);
-	if (structs != -1)
-		strus_free(global);
-	if (philosophers != -1)
-		phils_free(global);
+	int	i;
+
+	i = 0;
+	if (global->forks != NULL)
+		while (i < global->phil_num + 1)
+			pthread_mutex_destroy(&global->forks[i++]);
+	if (global->forks != NULL)
+		free(global->forks);
+}
+
+void	my_exit(t_universal *global)
+{
+	if (global == NULL)
+		exit(EXIT_FAILURE);
+	kill_phils(global);
+	kill_structs(global);
+	kill_forks(global);
 	exit(EXIT_SUCCESS);
-}	
+}
