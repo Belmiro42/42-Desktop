@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 22:36:17 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/16 07:04:28 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/16 08:14:06 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,70 +35,57 @@ void	wait_till_start(t_phil *current)
 static int	grim_reaper(long unsigned time, t_phil *current,
 			t_universal *global, int *feasted)
 {
-	int end;
-	long unsigned last_eat;
-	int count;
+	int				end;
+	long unsigned	last_eat;
 
 	pthread_mutex_lock(&current->last_eat_mutex);
 	last_eat = current->last_eat;
 	pthread_mutex_unlock(&current->last_eat_mutex);
-	if (time > last_eat)
+	if (time > last_eat && ((time - last_eat))
+		> (long unsigned)(global->die_t * 1000))
 	{
-		if (((time - last_eat))
-			> (long unsigned)(global->die_t * 1000))
-		{
-			pthread_mutex_lock(&global->end_mutex);
-			global->end++;
-			pthread_mutex_unlock(&global->end_mutex);
-			pthread_mutex_lock(&global->print);
-			usleep(1000);
-			printf("%lu\t%d\t%s\n", (time - global->start) / 1000,
-				current->id + 1, "died");
-		}
+		pthread_mutex_lock(&global->end_mutex);
+		global->end++;
+		pthread_mutex_unlock(&global->end_mutex);
+		usleep(1000);
+		pthread_mutex_lock(&global->print);
+		printf("%lu\t%d\t%s\n", (time - global->start) / 1000,
+			current->id + 1, "died");
 	}
 	pthread_mutex_lock(&current->eat_count_mutex);
-	count = current->eat_count;
-	pthread_mutex_unlock(&current->eat_count_mutex);
-	if (count >= global->eat_c)
+	if (current->eat_count >= global->eat_c)
 		(*feasted)++;
+	pthread_mutex_unlock(&current->eat_count_mutex);
 	pthread_mutex_lock(&global->end_mutex);
 	end = global->end;
 	pthread_mutex_unlock(&global->end_mutex);
 	return (end);
-
 }
 
 static void	*end_sim(void *arg)
 {
 	t_universal	*global;
-	int			iterator;
-	int			feasted;
+	int			i;
+	int			done;
 	int			end;
 
 	global = (t_universal *)arg;
 	end = 0;
-		while (get_time() < global->start + global->die_t * 980)
-	{
-		usleep(1);
-	}
+	phil_wait(global->start + global->die_t * 380);
 	while (!end)
 	{
 		pthread_mutex_lock(&global->end_mutex);
 		end = global->end;
 		pthread_mutex_unlock(&global->end_mutex);
-		iterator = -1;
-		feasted = 0;
-		while (++iterator != global->phil_num && !end)
-			 end = grim_reaper(get_time(), global->structs[iterator], global,
-				&feasted);
-		if (feasted >= global->phil_num && global->eat_c != 0 && !end)
+		i = -1;
+		done = 0;
+		while (++i != global->phil_num && !end)
+			end = grim_reaper(get_time(), global->structs[i], global, &done);
+		if (done >= global->phil_num && global->eat_c != 0 && !end)
 		{
 			pthread_mutex_lock(&global->end_mutex);
 			global->end++;
 			pthread_mutex_unlock(&global->end_mutex);
-			usleep(1000);
-			printf("%lu\t\t%s\n", (get_time() - global->start) / 1000,
-				"Philosophers Done Eating...");
 		}
 	}
 	return (NULL);
