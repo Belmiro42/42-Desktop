@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:40:12 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/14 02:56:10 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:19:20 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	my_exit(t_universal *global)
 	kill_phils(global);
 	kill_structs(global);
 	kill_forks(global);
+	pthread_mutex_destroy(&global->end_mutex);
 	exit(EXIT_SUCCESS);
 }

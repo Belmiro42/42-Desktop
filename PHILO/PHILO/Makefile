@@ -6,15 +6,16 @@
 #    By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/13 23:05:42 by bmatos-d          #+#    #+#              #
-#    Updated: 2024/07/14 03:17:20 by bmatos-d         ###   ########.fr        #
+#    Updated: 2024/07/16 06:55:47 by bmatos-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 REMOVE	= 	rm -rf
 
+#TODO: cc or gcc?
 CC	  	=	cc
 
-CFLAGS	=	-Wall -Werror -Wextra -g #-fsanitize=thread
+CFLAGS	=	-Wall -Werror -Wextra #-g -fsanitize=thread
 
 NAME	=	philosophers
 
@@ -29,8 +30,8 @@ SRCS	=	_CREATE_THREADS.c	\
 			_UTILS.c			\
 			MAIN.c
 
-SOURCES  := $(addprefix $(S_PATH)/,$(SRCS)) 
- 
+SOURCES  := $(addprefix $(S_PATH)/,$(SRCS))
+
 OBJECTS	  = $(SOURCES:.c=.o)
 
 all:		$(NAME)
@@ -42,6 +43,7 @@ $(NAME): 	$(OBJECTS)
 thread: $(OBJECTS)
 	@ $(CC) -fsanitize=thread $(CFLAGS) $(OBJECTS) -o $(NAME)
 	@ echo "Compiled"
+
 clean:
 	@ $(REMOVE) $(OBJECTS)
 

@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 22:28:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/14 02:14:14 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/16 06:09:46 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,45 @@
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							 	PARSE/JOIN								│
 //  ├───────────────────────────────────────────────────────────────────────┤
-int	free_string(char **argv)
-{
-	int	iterator;
 
-	iterator = -1;
-	if (argv[0])
+size_t	phil_strlen(const char *s)
+{
+	size_t	index;
+
+	index = 0;
+	while (s[index])
+		index++;
+	return (index);
+}
+
+size_t	phil_strlcpy(char *dst, const char *src, size_t buff_size)
+{
+	size_t	index;
+
+	index = 0;
+	if (buff_size == 0)
+		return (phil_strlen(src));
+	while (buff_size > 1 && src[index])
 	{
-		iterator = 0;
-		while (argv[iterator])
-			iterator++;
-		while (--iterator >= 0)
-			free(argv[iterator]);
+		dst[index] = src[index];
+		buff_size--;
+		index++;
 	}
-	free(argv);
-	return (0);
+	if (buff_size != 0)
+		dst[index] = '\0';
+	return (phil_strlen(src));
+}
+
+size_t	phil_strlcat(char *dst, const char *src, size_t buff_size)
+{
+	size_t	dst_len;
+	size_t	src_len;
+
+	src_len = phil_strlen(src);
+	dst_len = phil_strlen(dst);
+	if (buff_size <= dst_len)
+		return (buff_size + src_len);
+	return (dst_len + phil_strlcpy(dst + dst_len, src, buff_size - dst_len));
 }
 
 static char	*join(char *s1, const char *s2)
@@ -50,7 +74,7 @@ static char	*join(char *s1, const char *s2)
 	return (ptr);
 }
 
-static char	*join_all_inputs(char ***argv)
+char	*join_all_inputs(char ***argv)
 {
 	char	*str;
 
@@ -66,9 +90,4 @@ static char	*join_all_inputs(char ***argv)
 		(*argv)++;
 	}
 	return (str);
-}
-
-void	parse_input(int *argc, char ***argv)
-{
-	*argv = phil_split(join_all_inputs(argv), ' ', argc);
 }

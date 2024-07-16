@@ -69,7 +69,7 @@ static void	make_nodes(t_node **node, char **argv, int index)
 //  │								STRJOIN									│
 //  ├───────────────────────────────────────────────────────────────────────┤
 //	│ Joins all parameters into a single string to split later				|
-//  └───────────────────────────────────────────────────────────────────────┘ 
+//  └───────────────────────────────────────────────────────────────────────┘
 static char	*push_strjoin(char **argv, int *argc)
 {
 	static char	joined_str[70000];

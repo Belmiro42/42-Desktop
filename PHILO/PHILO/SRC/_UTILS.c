@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:44:22 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/14 02:07:41 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/16 06:09:53 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,45 +15,26 @@
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							 	UTILS									│
 //  ├───────────────────────────────────────────────────────────────────────┤
-size_t	phil_strlen(const char *s)
+
+
+int	free_string(char **argv)
 {
-	size_t	index;
+	int	iterator;
 
-	index = 0;
-	while (s[index])
-		index++;
-	return (index);
-}
-
-size_t	phil_strlcpy(char *dst, const char *src, size_t buff_size)
-{
-	size_t	index;
-
-	index = 0;
-	if (buff_size == 0)
-		return (phil_strlen(src));
-	while (buff_size > 1 && src[index])
+	iterator = -1;
+	if (argv[0])
 	{
-		dst[index] = src[index];
-		buff_size--;
-		index++;
+		iterator = 0;
+		while (argv[iterator])
+			iterator++;
+		while (--iterator >= 0)
+			free(argv[iterator]);
 	}
-	if (buff_size != 0)
-		dst[index] = '\0';
-	return (phil_strlen(src));
+	free(argv);
+	return (0);
 }
 
-size_t	phil_strlcat(char *dst, const char *src, size_t buff_size)
-{
-	size_t	dst_len;
-	size_t	src_len;
 
-	src_len = phil_strlen(src);
-	dst_len = phil_strlen(dst);
-	if (buff_size <= dst_len)
-		return (buff_size + src_len);
-	return (dst_len + phil_strlcpy(dst + dst_len, src, buff_size - dst_len));
-}
 
 long unsigned	get_time(void)
 {

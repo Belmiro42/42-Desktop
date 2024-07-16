@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:09:14 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/03 01:02:50 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:52:50 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //	│ Iterates through Stack A and Stack B and frees each node.				│
 //	│ You need the temp because freeing the node eliminates the next pointer│
 // 	│ I use my exit to end the program and free all the files simultaneuosly|
-//  └───────────────────────────────────────────────────────────────────────┘ 
+//  └───────────────────────────────────────────────────────────────────────┘
 void	my_exit(char *str, t_node *stack_prev_dir,
 		t_node *stack_next_dir, int ERROR)
 {
