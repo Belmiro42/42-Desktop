@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 02:44:52 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/16 07:04:38 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:23:11 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ typedef struct s_universal
 {
 	pthread_mutex_t	print;
 	pthread_mutex_t	end_mutex;
-	pthread_mutex_t	*forks;
+	pthread_mutex_t	start_mutex;
 	pthread_t		**philosophers;
+	pthread_mutex_t	*forks;
 	t_phil			**structs;
+	int				started;
 	int				phil_num;
 	int				die_t;
 	int				eat_t;
@@ -38,13 +40,13 @@ typedef struct s_universal
 
 typedef struct s_phil
 {
-	pthread_mutex_t	struct_mutex;
+	t_universal		*global;
 	pthread_mutex_t	last_eat_mutex;
 	pthread_mutex_t	eat_count_mutex;
-	t_universal		*global;
-	int				id;
-	long unsigned	last_eat;
+	pthread_mutex_t	id_mutex;
 	int				eat_count;
+	long unsigned	last_eat;
+	int				id;
 }	t_phil;
 
 long unsigned	get_time(void);
