@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	do_p_forealsies(void *puntero,
+static void	do_p_recursive(void *puntero,
 			unsigned int *index, unsigned int *length)
 {
 	char	*digits;
@@ -31,13 +31,13 @@ static void	do_p_forealsies(void *puntero,
 	*length += write(1, &digits[number % 16], 1);
 }
 
-void	do_p(void *poop, unsigned int *index, unsigned int *length)
+void	do_p(void *puntero, unsigned int *index, unsigned int *length)
 {
-	if (poop == NULL)
+	if (puntero == NULL)
 	{
 		*length += write(1, "(nil)", 5);
 		*index += 2;
 		return ;
 	}
-	do_p_forealsies(poop, index, length);
+	do_p_recursive(puntero, index, length);
 }
