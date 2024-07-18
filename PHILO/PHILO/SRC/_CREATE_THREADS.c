@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 22:36:17 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/18 13:50:07 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:54:53 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,33 @@
 //  │							 	THREADS									│
 //  ├───────────────────────────────────────────────────────────────────────┤
 
-static void start(t_universal *global)
-{
-	int start;
-
-	start = 0;
-	pthread_mutex_lock(&global->start_mutex);
-	start = global->started;
-	pthread_mutex_unlock(&global->start_mutex);
-}
-
-static int	grim_reaper(long unsigned time, t_phil *current,
-			t_universal *global, int *feasted)
+static int	grim_reaper(long unsigned time, t_phil *cu,
+			t_universal *gl, int *feasted)
 {
 	int				end;
 	long unsigned	last_eat;
 
 	end = 0;
-	pthread_mutex_lock(&current->last_eat_mutex);
-	last_eat = current->last_eat;
-	pthread_mutex_unlock(&current->last_eat_mutex);
-	(void)time;
+	pthread_mutex_lock(&cu->last_eat_mutex);
+	last_eat = cu->last_eat;
+	pthread_mutex_unlock(&cu->last_eat_mutex);
 	if (time > last_eat && ((time - last_eat))
-		> (long unsigned)(global->die_t * 1000))
+		> (long unsigned)(gl->die_t * 1000))
 	{
-		pthread_mutex_lock(&global->end_mutex);
-		pthread_mutex_lock(&current->id_mutex);
-		global->end++;
-		end = global->end;
-		printf("%lu\t%d\t%s\n", (time - global->start) / 1000,
-			current->id + 1, "died");
-		pthread_mutex_unlock(&current->id_mutex);
-		pthread_mutex_unlock(&global->end_mutex);
+		pthread_mutex_lock(&gl->end_mutex);
+		pthread_mutex_lock(&cu->id_mutex);
+		gl->end++;
+		end = gl->end;
+		printf("%lu\t%d\t%s\n", (time - gl->start) / 1000, cu->id + 1, "died");
+		pthread_mutex_unlock(&cu->id_mutex);
+		pthread_mutex_unlock(&gl->end_mutex);
 		usleep(500);
 		return (end);
 	}
-	pthread_mutex_lock(&current->eat_count_mutex);
-	if (current->eat_count >= global->eat_c)
+	pthread_mutex_lock(&cu->eat_count_mutex);
+	if (cu->eat_count >= gl->eat_c)
 		(*feasted)++;
-	pthread_mutex_unlock(&current->eat_count_mutex);
+	pthread_mutex_unlock(&cu->eat_count_mutex);
 	return (end);
 }
 
@@ -67,7 +55,6 @@ static void	*end_sim(void *arg)
 
 	global = (t_universal *)arg;
 	end = 0;
-	start(global);
 	while (!end)
 	{
 		pthread_mutex_lock(&global->end_mutex);
@@ -97,7 +84,7 @@ static void	create_thread(t_universal *global, int c)
 	{
 		current = malloc(sizeof(t_phil));
 		if (!current)
-				my_exit(global);
+			my_exit(global);
 		current->id = c;
 		global->structs[c] = current;
 		current->last_eat = global->start;

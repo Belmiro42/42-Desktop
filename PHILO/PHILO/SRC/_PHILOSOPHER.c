@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:37:43 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/18 15:09:37 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:52:06 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	phil_wait(long unsigned time)
 	while (get_time() < time)
 		usleep(400);
 }
+
 void	wait_till_start(t_phil *current)
 {
 	int				third;
@@ -70,18 +71,18 @@ static void	philosopher_eat(t_phil *current, pthread_mutex_t *l,
 	philosopher_print(current, "has taken fork 1");
 	if (current->global->phil_num != 1)
 	{
-	pthread_mutex_lock(l);
-	time = get_time();
-	philosopher_print(current, "has taken fork 2");
-	pthread_mutex_lock(&current->last_eat_mutex);
-	current->last_eat = time;
-	pthread_mutex_unlock(&current->last_eat_mutex);
-	philosopher_print(current, "is eating");
-	phil_wait(time + current->global->eat_t * 1000);
-	pthread_mutex_lock(&current->eat_count_mutex);
-	current->eat_count += 1;
-	pthread_mutex_unlock(&current->eat_count_mutex);
-	pthread_mutex_unlock(l);
+		pthread_mutex_lock(l);
+		time = get_time();
+		philosopher_print(current, "has taken fork 2");
+		pthread_mutex_lock(&current->last_eat_mutex);
+		current->last_eat = time;
+		pthread_mutex_unlock(&current->last_eat_mutex);
+		philosopher_print(current, "is eating");
+		phil_wait(time + current->global->eat_t * 1000);
+		pthread_mutex_lock(&current->eat_count_mutex);
+		current->eat_count += 1;
+		pthread_mutex_unlock(&current->eat_count_mutex);
+		pthread_mutex_unlock(l);
 	}
 	else
 		phil_wait(current->global->start + current->global->die_t * 1000);
@@ -97,11 +98,7 @@ void	*philosopher(void *arg)
 	int				end;
 
 	c = (t_phil *)arg;
-
 	wait_till_start(c);
-	pthread_mutex_lock(&c->global->start_mutex);
-	c->global->started++;
-	pthread_mutex_unlock(&c->global->start_mutex);
 	end = 0;
 	while (!end)
 	{

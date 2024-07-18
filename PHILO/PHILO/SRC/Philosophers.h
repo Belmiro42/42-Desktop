@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 02:44:52 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/18 13:23:11 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:47:19 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ typedef struct s_universal
 {
 	pthread_mutex_t	print;
 	pthread_mutex_t	end_mutex;
-	pthread_mutex_t	start_mutex;
 	pthread_t		**philosophers;
 	pthread_mutex_t	*forks;
 	t_phil			**structs;
-	int				started;
 	int				phil_num;
 	int				die_t;
 	int				eat_t;

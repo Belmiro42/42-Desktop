@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 22:33:01 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/18 13:26:42 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:47:29 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	initialise_struct(t_universal *global, char **argv)
 	global->eat_c = phil_atoi(argv, 5) + free_string(argv);
 	global->start = get_time() + 1000000;
 	global->forks = forks_set_up(global);
-	global->started = 0;
 	global->print = (global->forks)[global->phil_num];
 	global->philosophers = philosophers_set_up(global);
 	global->structs = philosophers_struct_set_up(global);
