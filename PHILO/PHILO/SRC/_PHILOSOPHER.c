@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:37:43 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/18 15:52:06 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:36:46 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ static void	philosopher_eat(t_phil *current, pthread_mutex_t *l,
 	long unsigned	time;
 
 	pthread_mutex_lock(r);
-	philosopher_print(current, "has taken fork 1");
+	philosopher_print(current, "has taken a fork");
 	if (current->global->phil_num != 1)
 	{
 		pthread_mutex_lock(l);
 		time = get_time();
-		philosopher_print(current, "has taken fork 2");
+		philosopher_print(current, "has taken a fork");
 		pthread_mutex_lock(&current->last_eat_mutex);
 		current->last_eat = time;
 		pthread_mutex_unlock(&current->last_eat_mutex);

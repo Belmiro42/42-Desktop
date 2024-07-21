@@ -1,0 +1,78 @@
+KNOWN FUNCTIONS
+	printf
+	malloc			- se
+	free			- se
+	write			- write to stdout
+	open			- Open file
+	read			- Read from a file
+	close			- Close File
+	access			- Checks File Exists and Permissions Exist
+	fork			- Creates NEAR Identical Process
+
+
+WAITS
+	wait			- Waits until one of the children "exit()"s Returns -1 or a random child PID
+	waitpid			- https://linux.die.net/man/2/waitpid
+	wait3 / wait4	- additionally return resource usage information about the child in the structure pointed to by rusage.
+
+
+SIGNALS
+	signal
+	sigaction
+	sigemptyset
+	sigaddset
+
+/////////////////////////////////////////////
+//////////// I DO NOT UNDERSTAND ////////////
+/////////////////////////////////////////////
+////////////// YT FOR ALL THIS //////////////
+/////////////////////////////////////////////
+
+ACCESS HERE -------->> https://03-jon-perez.gitbook.io/coding-library/c/readline
+
+	readline 		- Reads  User Input
+	add_history		- Adds to History
+	rl_clear_history	- Clears History
+	rl_on_new_line		-
+	rl_replace_line		-
+	rl_redisplay		-
+	execve			- Executes a program replaces this program with the executable program?
+	ttyslot			- 
+	ioctl			-
+
+
+
+
+
+	unlink			- Deletes a file from the filesystem if other files have it open deletes it after on success 0 is returned
+	dup				- Duplicates a file descriptor. Interchangeable. Modifications to one affect the other.
+	dup2			- Writes the file descriptor to the space occupied by new file descriptor.
+	pipe			- Create a channel that can be used to communicate between programs.
+	kill			- Send a signal to process group or process
+	exit			- Least signficant bit of status sent to parent
+	getcwd			- pwd in c
+	chdir			- change working directory
+	stat			- gives info on a file presumably for ls -l
+	lstat			- We probably want to use this one instead as stat gives symbolic link's link attributes
+	fstat			- takes a file  descriptor as argument instead
+	opendir			- Returns all the files in the directory with a type dir
+	readdir			- Get the next file with a type DIRENT
+	closedir		- closes the directory stream type DIR so effectivey  opendir iterate with readir closedir
+	strerror		- Searches for internal error froma function fail
+	perror			- Prints error message to stderr
+	getenv			- Gets the path of a environment variable
+	isatty			- tests whether  fildes,  an  open  file descriptor, is associated with a terminal device
+
+/////////////////////////////////////////////
+/////////////// NOT NEEDED A ////////////////
+/////////////////////////////////////////////
+
+	ttyname			- The function ttyname() returns a pointer to the null-terminated pathname of the terminal device that is open on the file descriptor fd, or NULL on error (for example, if fd is not connected to a terminal).
+	tcsetattr
+	tcgetattr
+	tgetent
+	tgetflag
+	tgetnum
+	tgetstr
+	tgoto
+	tputs

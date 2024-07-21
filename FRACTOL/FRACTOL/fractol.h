@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 05:57:14 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/06/05 14:18:23 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:35:57 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <math.h> 
-# include <X11/X.h> 
-# include <X11/keysym.h> 
+# include <math.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "MLX-LNX/mlx.h"
 
 typedef struct s_complex

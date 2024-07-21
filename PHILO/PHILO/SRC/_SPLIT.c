@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:41:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/13 21:22:04 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:26:52 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,7 @@ char	**phil_split(char *s, char c, int *argc)
 		return (NULL);
 	l = numstring(s, c);
 	if (l != 6 && l != 5)
-	{
-		printf("FIX ME: MY_EXIT\n");
-		free(s);
-		exit(EXIT_FAILURE);
-	}
+		my_exit(NULL);
 	*argc = l;
 	dst = (char **)malloc(sizeof(char *) * (l + 1));
 	if (dst == NULL)

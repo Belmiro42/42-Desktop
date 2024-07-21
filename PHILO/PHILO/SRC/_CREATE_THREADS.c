@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 22:36:17 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/18 15:54:53 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:34:49 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,9 @@ static int	grim_reaper(long unsigned time, t_phil *cu,
 		> (long unsigned)(gl->die_t * 1000))
 	{
 		pthread_mutex_lock(&gl->end_mutex);
-		pthread_mutex_lock(&cu->id_mutex);
 		gl->end++;
 		end = gl->end;
 		printf("%lu\t%d\t%s\n", (time - gl->start) / 1000, cu->id + 1, "died");
-		pthread_mutex_unlock(&cu->id_mutex);
 		pthread_mutex_unlock(&gl->end_mutex);
 		usleep(500);
 		return (end);

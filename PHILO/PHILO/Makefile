@@ -6,14 +6,14 @@
 #    By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/13 23:05:42 by bmatos-d          #+#    #+#              #
-#    Updated: 2024/07/18 15:46:45 by bmatos-d         ###   ########.fr        #
+#    Updated: 2024/07/18 18:28:02 by bmatos-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 REMOVE	= 	rm -rf
 CC	  	=	gcc
 CFLAGS	=	-Wall -Werror -Wextra -g -fsanitize=thread
-NAME	=	philosophers
+NAME	=	philo
 S_PATH 	=	./SRC
 SRCS	=	_CREATE_THREADS.c	\
 			_INITIALISE.c		\
@@ -31,10 +31,6 @@ all:		$(NAME)
 
 $(NAME): 	$(OBJECTS)
 	@ $(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
-	@ echo "Compiled"
-
-thread: $(OBJECTS)
-	@ $(CC) -fsanitize=thread $(CFLAGS) $(OBJECTS) -o $(NAME)
 	@ echo "Compiled"
 
 clean:
