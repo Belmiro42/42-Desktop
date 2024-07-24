@@ -1,0 +1,5 @@
+//ERROR w:
+//"$2" -> should print nothing
+//"$"""
+//"$''"
+//

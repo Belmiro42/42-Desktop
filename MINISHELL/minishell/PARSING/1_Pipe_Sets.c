@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:35:59 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/23 07:40:19 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/24 00:29:43 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ t_pipe_set *find_pipe_sets(char *str)
 	while (str[iterator])
 	{
 		//printf("%s\n", cpy);													// DELETE
-		if ((str[iterator] == '|' && str[iterator + 1] == '|')
+		in_quotes(str[iterator], &inquote);
+		if (inquote == 0 && (str[iterator] == '|' && str[iterator + 1] == '|')
 			|| (str[iterator] == '&' && str[iterator + 1] == '&'))
 			add_to_back(make_pipe_sets(&cpy, &value, &iterator, str), &ret);
 			//add_to_back(make_pipe_sets(&str, &value, &iterator), &ret);

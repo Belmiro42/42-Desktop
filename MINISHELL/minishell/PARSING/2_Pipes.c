@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:26:28 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/23 08:26:12 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/24 00:28:54 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_pipe *find_pipes_2(char *str)
 	while (str[iterator])
 	{
 		//printf("%s\n", cpy);													// DELETE
+		in_quotes(str[iterator], &inquote);
 		if (str[iterator] == '|' && inquote == 0)
 			pipe_to_back(make_pipes(&cpy, &iterator), &ret);
 		if ((str[iterator - 1] != '\0' || iterator == 0))

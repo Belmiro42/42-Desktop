@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/23 08:25:17 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/24 02:22:19 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_pipe_set
 char	*ft_strjoin(char const *s1, char const *s2, bool free1, bool free2);
 char	*parsing_primitive(char *input);
 char	*add_character(char s1, char *s2, bool free1);
-void	entre_comillas(char c, int *quote);
+void	in_quotes(char c, int *quote);
 t_pipe_set	*find_pipe_sets(char *str);
 void	find_pipes_1(t_pipe_set *set);
+void interpret_pipe(t_pipe *p);

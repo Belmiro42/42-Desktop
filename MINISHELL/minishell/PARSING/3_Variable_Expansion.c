@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:51:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/23 08:26:18 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/24 04:00:10 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 // TODO: MAKE SURE WE HAVE A DUPLICATE OF VAL 
 
 
-// FUNCTION DESCRIPTION: entre_comillas
+// FUNCTION DESCRIPTION: in_quotes
 // Whether we are in simple quotes or doubles quotes.
 // 1 DENOTES WE ARE IN SIMPLE QUOTE
 // 2 DENOTES WE ARE IN SIMPLE QUOTE
-void entre_comillas(char c, int *quote)
+void in_quotes(char c, int *quote)
 {
 	//printf("%c\t%d\n", c, *quote);											// DELETE Checker
 	if (c == '\'' && *quote == 0)												// NOTE: 1 quire decir que estamos dentro de simples
@@ -135,8 +135,8 @@ void evaluate_var(char *input, char **output, int *quote)
 	iterator = 0;
 	while (input[iterator])
 	{
-		entre_comillas(input[iterator], quote);
-		printf("%c\t%d\t%s\n", input[iterator], *quote, *output);				// DELETE Checker
+		in_quotes(input[iterator], quote);
+		//printf("%c\t%d\t%s\n", input[iterator], *quote, *output);				// DELETE Checker
 		if (input[iterator] == '$' && *quote != 1 && input[iterator + 1]
 			!= '\0' && input[iterator + 1] != ' ')
 		{
@@ -161,19 +161,6 @@ char *parsing_primitive(char *input)
 	quote = 0;
 	output = NULL;
 	evaluate_var(input, &output, &quote);
+	free(input);																// CONDITIONAL DELETE This is in the case we always pass in 
 	return(output);
 }
-
-int main(int argc, char **argv)
-{
-	t_pipe_set *set;
-
-	set = find_pipe_sets("$PATH|ello a || o");
-	find_pipes_1(set);
-	printf("%s\n", parsing_primitive(set->pipe->raw_text));
-	return (0);
-}
-
-
-//ERROR w:
-//"$2" -> should print nothing

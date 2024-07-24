@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 19:47:08 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/15 20:52:34 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:48:19 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //	│ Displays the stacks in the following format:  						│
 // 	│ Bottom Of Stack A -> Top Stack A -> █ -> Top Stack B -> Bottom Stk B	│
 //  └───────────────────────────────────────────────────────────────────────┘ 
-/*
+
 static void	display(t_node *stack_a, t_node *stack_b)
 {
 	printf("\n");
@@ -37,7 +37,7 @@ static void	display(t_node *stack_a, t_node *stack_b)
 	}
 	printf("\n\n\n");
 }
-*/
+
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							  CHECK LINKS	(Legacy Code (Still Useful))│
 //  ├───────────────────────────────────────────────────────────────────────┤
@@ -97,8 +97,8 @@ static void check_links_b(t_node *stack)
 //	│ Throughout the code we have my_exit function which we pass a string to│
 //	│ These do not print to conform to assessment standards but makes it    │
 // 	│ much easier to identify what the error is, if you do print. Also frees│
-//  └───────────────────────────────────────────────────────────────────────┘ 
-//  
+//  └───────────────────────────────────────────────────────────────────────┘
+//
 int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
@@ -109,6 +109,8 @@ int	main(int argc, char **argv)
 	stack_a = make_stack(argc, argv + 1);
 	stack_b = NULL;
 	index_stack(stack_a);
+	display(stack_a, stack_b);
 	sort(&stack_a, &stack_b);
+	display(stack_a, stack_b);
 	my_exit("END OF THE PROGRAM", stack_a, stack_b, 0);
 }
