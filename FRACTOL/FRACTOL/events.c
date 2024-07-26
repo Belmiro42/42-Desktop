@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 05:59:49 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/06/04 08:29:51 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/25 00:01:40 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	close_handler(t_fractal *fractal)
 }
 
 int	key_handler(int keysym, t_fractal *fractal)
-{	
+{
 	if (keysym == XK_Escape)
 		close_handler(fractal);
 	else if (keysym == XK_Left)
@@ -43,7 +43,7 @@ int	key_handler(int keysym, t_fractal *fractal)
 		fractal->zoom *= (1 / 0.95);
 		fractal->iterations_definition -= 1;
 	}
-	else if (keysym == XK_x)
+	3 else if (keysym == XK_x)
 		change_colour(fractal);
 	fractal_render(fractal);
 	return (0);

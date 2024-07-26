@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 05:41:01 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/06/04 05:42:38 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/25 00:16:42 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int	main(int argn, char **argv)
 {
 	t_fractal	fractal;
 
-	if ((2 == argn && (!ft_strncmp(argv[1], "mandelbrot", 10)
-				|| !ft_strncmp(argv[1], "burning ship", 12))) || (argn == 4
-			&& !ft_strncmp(argv[1], "julia", 5)))
+	if ((2 == argn && (!ft_strncmp(argv[1], "mandelbrot", 10) || !ft_strncmp(argv[1], "burning ship", 12))) || (argn == 4 && !ft_strncmp(argv[1], "julia", 5)))
 	{
 		fractal.name = argv[1];
 		if (argn == 4)
