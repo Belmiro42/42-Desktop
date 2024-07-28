@@ -18,7 +18,7 @@
 //	│ Displays the stacks in the following format:  						│
 // 	│ Bottom Of Stack A -> Top Stack A -> █ -> Top Stack B -> Bottom Stk B	│
 //  └───────────────────────────────────────────────────────────────────────┘ 
-
+/*
 static void	display(t_node *stack_a, t_node *stack_b)
 {
 	printf("\n");
@@ -36,7 +36,7 @@ static void	display(t_node *stack_a, t_node *stack_b)
 		stack_b = stack_b->next;
 	}
 	printf("\n\n\n");
-}
+}*/
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							  CHECK LINKS	(Legacy Code (Still Useful))│
@@ -109,8 +109,8 @@ int	main(int argc, char **argv)
 	stack_a = make_stack(argc, argv + 1);
 	stack_b = NULL;
 	index_stack(stack_a);
-	display(stack_a, stack_b);
+	//display(stack_a, stack_b);
 	sort(&stack_a, &stack_b);
-	display(stack_a, stack_b);
+	//display(stack_a, stack_b);
 	my_exit("END OF THE PROGRAM", stack_a, stack_b, 0);
 }
