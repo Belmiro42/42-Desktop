@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/27 10:38:28 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:51:07 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <bsd/string.h>
+#include <dirent.h>
+#include <unistd.h>
+#include <limits.h>
 
 typedef struct s_pipe_set	t_pipe_set;
 typedef struct s_output		t_output;
@@ -35,7 +38,7 @@ typedef struct s_pipe_set
 typedef struct s_pipe
 {
 	char		*raw_text;
-	t_args		*args;
+	char		**args;
 	t_input		*in;
 	t_output	*out;
 	t_pipe		*next;
@@ -53,27 +56,27 @@ typedef struct s_input
 typedef struct s_output
 {
 	bool		write;
-	char		*name;
+	char		*filename;
 	t_output	*next;
 } t_output;
 
 // STRUCT DESCRIPTION: t_arg
 //Does it contain a wildcard and if so what position is that wildcard in?
-typedef struct s_args
-{
-	bool		wildcard;
-	int			*pos;
-	char		*name;
-	t_output	*next;
-} t_args;
-
+void			find_pipes_1(t_pipe_set *set);
+void			interpret_pipe(t_pipe *p);
+void			tokenise(t_pipe *current, char *str);
 char			*ft_strjoin(char const *s1, char const *s2, bool free1, bool free2);
-char			*parsing_primitive(char *input);
+char			*ft_substr(char const *s,  int start, int len);
+char			*variable_expansion(char *input);
 char			*add_character(char s1, char *s2, bool free1);
+char			*expand_wildcards(char *str);
+char			*ft_strdup(const char *str1);
+char			*ft_strnstr(const char *str, const char *to_find, size_t len);
+char			**wildcard_split(char const *s, char c);
 int				in_quotes(char c, int *quote);
 int				bels_isspace(char c);
 int				ft_strlcat(char *dst, const char *src, size_t buff_size);
+int				ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t			ft_strlen(const char *s);
-void			find_pipes_1(t_pipe_set *set);
-void			interpret_pipe(t_pipe *p);
+size_t			ft_strlcpy(char *dst, const char *src, size_t buff_size);
 t_pipe_set		*find_pipe_sets(char *str);

@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:47:25 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/06/04 11:35:14 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:23:56 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	send_msg(pid_t server_pid, char *text)
 				kill(server_pid, SIGUSR1);
 			else
 				kill(server_pid, SIGUSR2);
-			usleep(100);
+			usleep(500);
 			character <<= 1;
 		}
 		text++;

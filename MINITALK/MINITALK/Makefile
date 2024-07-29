@@ -6,7 +6,7 @@
 #    By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 11:47:23 by bmatos-d          #+#    #+#              #
-#    Updated: 2024/06/04 11:27:12 by bmatos-d         ###   ########.fr        #
+#    Updated: 2024/07/29 11:22:03 by bmatos-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ all: $(UTILS_PATH) $(SERVER) $(CLIENT)
 bonus: $(UTILS_PATH) $(SERVER_BONUS) $(CLIENT_BONUS)
 
 .c.o:
-	$(COMPILE) -c -o $@ $<X
+	$(COMPILE) -c -o $@ $<
 
 $(UTILS_PATH): 
 	@$(MAKE) -C ./Utils 
@@ -74,4 +74,3 @@ clean:
 fclean: clean
 	$(RM) $(SERVER) $(CLIENT) $(SERVER_BONUS) $(CLIENT_BONUS) \
 	&& $(MAKE) fclean -C ./Utils
-

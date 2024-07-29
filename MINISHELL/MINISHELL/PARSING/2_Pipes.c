@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:26:28 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/27 11:03:35 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:51:50 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ t_pipe *make_pipes(char **cpy, int *iterator)
 	current->raw_text = *cpy;													// TODO: STRDUP
 	current->in = NULL;
 	current->out = NULL;
-	current->args = NULL;
+	current->args = malloc(sizeof(char *));
+	(current->args)[0] = NULL;
 	current->next = NULL;
 	//printf("2STR; %s\n", current->raw_text);									// DELETE
 	if (*cpy)
@@ -66,6 +67,7 @@ t_pipe *find_pipes_2(char *str)
 	{
 		//printf("%s\n", cpy);													// DELETE
 		in_quotes(str[iterator], &inquote);
+		//printf("CHAR = %c\tINT = %d\n", str[iterator], inquote);				// DELETE
 		if (str[iterator] == '|' && inquote == 0)
 			pipe_to_back(make_pipes(&cpy, &iterator), &ret);
 		if ((str[iterator - 1] != '\0' || iterator == 0))

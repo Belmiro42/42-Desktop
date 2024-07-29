@@ -1,0 +1,27 @@
+Tokenise
+
+ERRORS
+
+set = transform_input("*.c");
+// Segfault
+	Problem 	?
+	Solution 	?
+
+set = transform_input(" 5* ");
+// Fetches 4.5
+	Problem 	Were treating every wildcard as starting with * because of the strnstr function
+	Solution: 	?
+
+
+
+
+
+
+
+
+Resolved
+
+set = transform_input("*.c \"as >>*.c < $USER \" $USER \" <<he\"r\'$USER\'e\" \'$USER\'doc ls -la >out > out2 | pipe2$QT_IM_MODULE && hola $USER ||  A j* <abc*'a*aa a'$USER*.c 6*.c \" *.c \"  \' *.c\' ");
+// This interprets *.c as * for some reason
+	- Problem		Forgot a quote in the input.
+	- Solution		Add Quote in the input
