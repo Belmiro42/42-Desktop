@@ -14,7 +14,7 @@ REMOVE	  = rm -rf
 CC	  	  = gcc
 CFLAGS	  =-Wall -Werror -Wextra -g
 NAME	  = push_swap
-CHECKER	  = checker
+CHECKER	  = checker_linux
 MOVE_PATH = ./_______MOVEMENTS
 MOVE_SRCS = Move_Push.c			\
 			Move_Rev_Rotate.c	\
