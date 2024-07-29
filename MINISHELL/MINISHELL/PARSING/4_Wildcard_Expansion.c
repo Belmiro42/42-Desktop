@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 03:01:41 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/29 12:31:08 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:50:41 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,28 @@
 void find_prefix(char *str, char **prefix, int *back)
 {
 	*prefix = strdup(" ");
-	while(true)
+	if (*back != 0)
+		while(bels_isspace(str[*back]) && *back >= 1)
+			(*back)--;
+	printf("START%d\n", *back);
+	if (str[*back] == '<')
 	{
-		if ((*back)-- >=1)
-			while(bels_isspace(str[*back]) && *back >= 1)
-				(*back)--;
-		if (str[*back] == '<')
-		{
-			*prefix = ft_strjoin(*prefix, "<", 1, 0);
-			if (*back >= 1)
-				if (str[--(*back)] == '<')
-				 *prefix = ft_strjoin(*prefix, "<", 1, 0);
-		}
-		else if (str[*back] == '>')
-		{
-			*prefix = ft_strjoin(*prefix, ">", 1, 0);
-			if (*back >= 1)
-				if (str[--(*back)] == '>')
-				 *prefix = ft_strjoin(*prefix, ">", 1, 0);
-		}
-		else
-			(*back) += 2;
-		*prefix = ft_strjoin(*prefix, " ", 1, 0);
-		break;
+		*prefix = ft_strjoin(*prefix, "<", 1, 0);
+		if (*back >= 1)
+			if (str[--(*back)] == '<')
+				*prefix = ft_strjoin(*prefix, "<", 1, 0);
 	}
+	else if (str[*back] == '>')
+	{
+		*prefix = ft_strjoin(*prefix, ">", 1, 0);
+		if (*back >= 1)
+			if (str[--(*back)] == '>')
+				*prefix = ft_strjoin(*prefix, ">", 1, 0);
+	}
+	else
+		if (bels_isspace(str[*back + 1]))
+			(*back) += 2;														// NOTE: Queremos comportamiento distincto si *back == 0
+	*prefix = ft_strjoin(*prefix, " ", 1, 0);
 }
 
 void find_all_matching(char **matching, char *prefix, char **insert)
@@ -77,12 +75,14 @@ char *find_pattern(char *str, int *iterator, int *start)
 	quotes = 0;
 	*start = *iterator;
 	while (str[*start] != ' ' && str[*start] != '<' && str[*start] != '>'
-		&& start >= 0)
-		change = in_quotes(str[(*start)--], &quotes);
+		&& *start >= 0)
+			change = in_quotes(str[(*start)--], &quotes);
 	while ((str[(*iterator)] != ' ' && str[(*iterator)] != '<' &&
 		str[(*iterator)] != '>' && str[(*iterator)] != '\0') || quotes != 0)
 		change = in_quotes(str[(*iterator)++], &quotes);
+	//printf("START%d\n", *start);
 	(void)(*start)++;
+	//printf("START%d\n", *start);
 	(void)(*iterator);
 																				//HERE FIND WHETHER ITS ARG OR INPUT OUTPUT
 																				//TRACE start TO NON-WHITESPACE CHARACTER OR START OF INPUT
@@ -118,9 +118,12 @@ char *expand_wildcards(char *str)
 	temp = 0;
 
 	//printf("%s\n\n", str);
-	//int strint = 0;
-	//while (strint < strlen(str))
-	//	printf("%d\t%c\n", strint, str[strint++]);
+	int strint = 0;
+	while (strint < strlen(str))
+	{
+		//printf("%d\t%c\n", strint, str[strint]);
+		strint++;
+	}
 	while(str[iterator])
 	{
 		change = in_quotes(str[iterator], &quotes);
@@ -128,6 +131,7 @@ char *expand_wildcards(char *str)
 		{
 			insert = ft_strdup("");
 			pattern = find_pattern(str, &iterator, &start);
+			//printf("START%d\n", start);
 			find_prefix(str, &prefix, &start);
 			//printf("TEMP %d\tSTART %d\tITER %d\n", temp, start, iterator);
 			output = output_insert(str, temp, start, output);
@@ -138,14 +142,14 @@ char *expand_wildcards(char *str)
 				index++;
 			find_all_matching(matching, prefix, &insert);
 			temp = iterator -1;
-			//if (strlen(insert) > 1 )
-			//	printf("INSERT %s\n", insert);
+			if (strlen(insert) > 1 )
+				printf("INSERT %s\n", insert);
 			output = ft_strjoin(output, insert, 1, 1);
 			//printf("OUTPUT %s\n\n", output);
 		}
 		iterator++;
 	}
-	//printf("Temp %d\tStart %d\tLen %d\n", temp, start, strlen(str));
+	//printf("Temp %d\tStart %d\tLen %d\n", temp, start, (int)strlen(str));
 	output = ft_strjoin(output, ft_substr(str, temp + 1, strlen(str) - temp - 1), 1, 1);
 	//printf("FINAL %s\n", output);
 	return(output);
