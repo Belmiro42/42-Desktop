@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 21:41:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/30 00:17:19 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:04:36 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int main()
 	t_output *output;
 
 
-	set = transform_input(" < Makefile <<a < h << kllas cat -e | cat -e && ls || ls -a || sleep 5 && cat -e > /dev/stdout ");
+	set = transform_input("<*.c Makefile <<a < h << kllas cat -e | cat -e && ls || ls -a || sleep 5 && cat -e > /dev/stdout ");
 	//set = transform_input("  j*  j*.c <j*.c \"as >>*.c < $USER \" $USER \" <<he\"r\'$USER\'e\"\" \'$USER\'doc ls -la >out > out2 | pipe2$QT_IM_MODULE && hola $USER ||  A j* <abc*'a*aa a'$USER*.c 6*.c \" *.c \"  \' *.c\' ");
 	while (set != NULL)
 	{

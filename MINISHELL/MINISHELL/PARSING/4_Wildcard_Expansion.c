@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 03:01:41 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/29 23:50:41 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:02:43 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 void find_prefix(char *str, char **prefix, int *back)
 {
 	*prefix = strdup(" ");
+	//printf("START 1\t  %d\n", *back);
 	if (*back != 0)
-		while(bels_isspace(str[*back]) && *back >= 1)
-			(*back)--;
-	printf("START%d\n", *back);
+		while(bels_isspace(str[--(*back)]) && *back >= 1)
+			;
+	//printf("START 2\t  %d\n", *back);
 	if (str[*back] == '<')
 	{
 		*prefix = ft_strjoin(*prefix, "<", 1, 0);
 		if (*back >= 1)
 			if (str[--(*back)] == '<')
 				*prefix = ft_strjoin(*prefix, "<", 1, 0);
+	//printf("START 3\t  %d\n", *back);
 	}
 	else if (str[*back] == '>')
 	{
@@ -32,11 +34,13 @@ void find_prefix(char *str, char **prefix, int *back)
 		if (*back >= 1)
 			if (str[--(*back)] == '>')
 				*prefix = ft_strjoin(*prefix, ">", 1, 0);
+	//	printf("START 4\t  %d\n", *back);
 	}
 	else
-		if (bels_isspace(str[*back + 1]))
-			(*back) += 2;														// NOTE: Queremos comportamiento distincto si *back == 0
+		(*back) += 2;
+	//printf("START 5\t  %d\n", *back);
 	*prefix = ft_strjoin(*prefix, " ", 1, 0);
+	//printf("PREFIX %s\n", *prefix);
 }
 
 void find_all_matching(char **matching, char *prefix, char **insert)
@@ -118,12 +122,12 @@ char *expand_wildcards(char *str)
 	temp = 0;
 
 	//printf("%s\n\n", str);
-	int strint = 0;
+/*	int strint = 0;
 	while (strint < strlen(str))
 	{
-		//printf("%d\t%c\n", strint, str[strint]);
+		printf("%d\t%c\n", strint, str[strint]);
 		strint++;
-	}
+	}*/
 	while(str[iterator])
 	{
 		change = in_quotes(str[iterator], &quotes);

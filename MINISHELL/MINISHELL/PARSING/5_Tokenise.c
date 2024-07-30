@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:45:14 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/29 21:39:59 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:03:24 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void add_to_args(char ***arr, char *token)
 	}
 	narr[iterator] = token;
 	narr[iterator + 1] = NULL;
-	int check = 0;
+	//int check = 0;
 	//while(narr[check])
 	//	printf("\t%s\n", narr[check++]);
 	(*arr) = narr;
