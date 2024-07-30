@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 03:01:41 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/30 17:02:43 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/30 20:51:29 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@ void find_prefix(char *str, char **prefix, int *back)
 	//printf("START 2\t  %d\n", *back);
 	if (str[*back] == '<')
 	{
-		*prefix = ft_strjoin(*prefix, "<", 1, 0);
+		*prefix = ft_strjoin(*prefix, "<", DEL, KEEP);
 		if (*back >= 1)
 			if (str[--(*back)] == '<')
-				*prefix = ft_strjoin(*prefix, "<", 1, 0);
+				*prefix = ft_strjoin(*prefix, "<", DEL, KEEP);
 	//printf("START 3\t  %d\n", *back);
 	}
 	else if (str[*back] == '>')
 	{
-		*prefix = ft_strjoin(*prefix, ">", 1, 0);
+		*prefix = ft_strjoin(*prefix, ">", DEL, KEEP);
 		if (*back >= 1)
 			if (str[--(*back)] == '>')
-				*prefix = ft_strjoin(*prefix, ">", 1, 0);
+				*prefix = ft_strjoin(*prefix, ">", DEL, KEEP);
 	//	printf("START 4\t  %d\n", *back);
 	}
 	else
 		(*back) += 2;
 	//printf("START 5\t  %d\n", *back);
-	*prefix = ft_strjoin(*prefix, " ", 1, 0);
+	*prefix = ft_strjoin(*prefix, " ", DEL, KEEP);
 	//printf("PREFIX %s\n", *prefix);
 }
 
@@ -62,11 +62,7 @@ void find_all_matching(char **matching, char *prefix, char **insert)
 				break;
 		}
 		if (current)
-		{
-			*insert = ft_strjoin(*insert, prefix, 1, 0);
-			*insert = ft_strjoin(*insert, ft_strjoin("\'",
-				ft_strjoin(strdup(entry->d_name), "\'", 1, 0), 0, 1), 1, 1);
-		}
+			*insert = ft_strjoin(*insert, ft_strjoin(prefix, ft_strjoin("\'", ft_strjoin(strdup(entry->d_name), "\'", DEL, KEEP), KEEP, DEL), KEEP, DEL), DEL, DEL);
 	}
 	closedir(dir);
 }
@@ -95,11 +91,11 @@ char *find_pattern(char *str, int *iterator, int *start)
 char *output_insert(char *str, int temp, int start, char *out)
 {
 	if (temp == 0)
-		out = ft_strjoin(out, ft_substr(str, temp, start - temp), 1, 1);
+		out = ft_strjoin(out, ft_substr(str, temp, start - temp), DEL, DEL);
 	else if (start < temp)
-		out = ft_strjoin(out, ft_substr(str, temp + 1, ft_strlen(str) - temp), 1, 1);
+		out = ft_strjoin(out, ft_substr(str, temp + 1, ft_strlen(str) - temp), DEL, DEL);
 	else
-		out = ft_strjoin(out, ft_substr(str, temp + 1, start - temp - 1), 1, 1);
+		out = ft_strjoin(out, ft_substr(str, temp + 1, start - temp - 1), DEL, DEL);
 	return (out);
 }
 

@@ -6,11 +6,11 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 02:44:52 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/18 18:39:57 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/30 23:00:31 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  PHILOSOPHERS_H
+#ifndef PHILOSOPHERS_H
 
 # define PHILOSOPHERS_H
 
@@ -32,7 +32,7 @@ typedef struct s_universal
 	pthread_mutex_t	*forks;
 	t_phil			**structs;
 	int				phil_num;
-	int				die_t
+	int				die_t;
 	int				eat_t;
 	int				sleep_t;
 	int				eat_c;

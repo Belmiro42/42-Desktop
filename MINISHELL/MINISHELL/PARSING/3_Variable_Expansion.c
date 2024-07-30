@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:51:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/29 14:46:55 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:29:16 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char *get_var_value(int *iterator, char *input, int *quote)
 		val = ft_strdup(getenv(var));
 		free(var);
 		if (*quote == 0)
-			val = ft_strjoin("\'", ft_strjoin(val, "\'", 1, 0), 0, 1);
+			val = ft_strjoin("\'", ft_strjoin(val, "\'", DEL, KEEP), KEEP, DEL);
 	}
 	*iterator += count - 1;
 	return (val);
@@ -101,7 +101,7 @@ void evaluate_var(char *input, char **output, int *quote)
 		{
 			value = get_var_value(&iterator, input, quote); 					// NOTE: DOES NOT ITERATE BEYOND SPECIAL CHARACTERS
 			// printf("OUTPUT: %s\n", *output);									// DELETE Checker
-			*output = ft_strjoin(*output, value, 1, 1); 						// TODO: APPEND WITH SINGLE QUOTES ENCLOSING
+			*output = ft_strjoin(*output, value, DEL, DEL); 						// TODO: APPEND WITH SINGLE QUOTES ENCLOSING
 		}
 		else
 		{

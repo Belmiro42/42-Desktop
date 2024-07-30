@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/29 18:51:07 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:35:07 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <limits.h>
+#define DEL		1
+#define KEEP	0
 
 typedef struct s_pipe_set	t_pipe_set;
 typedef struct s_output		t_output;

@@ -1,20 +1,19 @@
 ERRORS
 
 ¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-TODO:	set = transform_input(" 5* ");																	 
-TODO:	// Fetches 4.5																					 
-TODO:		Problem 	Were treating every wildcard as starting with * because of the strnstr function	 
-TODO:		Solution: 	?																				 
+TODO:	set = transform_input(" 5* ");
+TODO:	// Fetches 4.5
+TODO:		Problem 	Were treating every wildcard as starting with * because of the strnstr function
+TODO:		Solution: 	?
 ¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 
 
+?? NOT A PROBLEM BUT TBD HOW TO HANDLE WHEN EXECCUTION BEGINS
+	set = transform_input(" ls -la ");
+	// Creates Two Seperate Arguments
+		Problem		We need a single argument "cmd flags" to pass to execve
+		Solution	Function to Merge 
 
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-TODO:	set = transform_input(" ls -la ");
-TODO:	// Creates Two Seperate Arguments
-TODO:		Problem		We need a single argument "cmd flags" to pass to execve
-TODO:		Solution	Function to Merge 
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 
 "< Makefile
 
