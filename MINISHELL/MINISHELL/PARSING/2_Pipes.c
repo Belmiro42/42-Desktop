@@ -6,11 +6,11 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:26:28 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/29 18:51:50 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/31 08:30:30 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // ¡¡TODO: PARSE ERROR
 

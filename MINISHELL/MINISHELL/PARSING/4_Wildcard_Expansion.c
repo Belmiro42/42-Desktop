@@ -6,11 +6,11 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 03:01:41 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/30 20:51:29 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/31 08:30:31 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void find_prefix(char *str, char **prefix, int *back)
 {

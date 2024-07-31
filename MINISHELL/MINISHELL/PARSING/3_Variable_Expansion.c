@@ -6,48 +6,18 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:51:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/30 19:29:16 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:25:27 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // ¡¡TODO: Protect Mallocs
 // ¡¡TODO: APPEND WITH SINGLE QUOTES ENCLOSING
 // ¡¡TODO: STRLEN STRCPY AND STRLCAT
 // TODO: MAKE SURE WE HAVE A DUPLICATE OF VAL
 
-// FUNCTION DESCRIPTION: STR_JOIN
-// joins two strings together
-// frees aswell if you want it to
-char *ft_strjoin(char const *s1, char const *s2, bool free1, bool free2)
-{
-	char *ptr;
-	int len;
-	// printf("S1: %s \nS2: %s\n", s1, s2);										// DELETE Checker
 
-	if (!s1 && !s2)
-		return (NULL);
-	if (s2 && !s1)
-		return ((char *)s2);
-	if (s1 && !s2)
-		return ((char *)s1);
-	len = strlen(s1) + strlen(s2); // TODO: STRLEN STRCPY AND STRLCAT
-	// printf("Len: %d\n", len);												// DELETE Checker
-	ptr = malloc(len + 1);
-	if (ptr == NULL)
-		return (NULL);
-	ft_strlcpy(ptr, s1, len + 1);
-	// printf("%s\n", ptr);														// DELETE Checker
-	ft_strlcat(ptr, s2, len + 1);
-	// printf("%s\n", ptr);														// DELETE Checker
-	if (free1 && s1) // NOTE: Añadi este variable para liberar si quieres.
-		free((char *)s1);
-	if (free2 && s2)
-		free((char *)s2);
-	// printf("ptr: %s\n\n\n", ptr);											// DELETE Checker
-	return (ptr);
-}
 
 // FUNCTION DESCRIPTION: get_var_value
 // Find Var Name From String

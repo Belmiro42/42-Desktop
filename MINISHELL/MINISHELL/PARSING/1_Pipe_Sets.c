@@ -6,11 +6,11 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:35:59 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/29 12:29:28 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/31 08:30:29 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // ¡¡TODO: STRDUP
 // ¡¡TODO: MALLOC
