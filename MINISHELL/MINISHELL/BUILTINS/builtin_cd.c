@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:05:16 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/30 19:24:46 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/07/31 07:39:27 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ NOTE:		{
 NOTE:			export()
 TODO: 	Figure out how to do this but figure out if you need to change OLDPWD to
 		PWD and if you need to change the pwd variable. Check what chdir does
-NOTE:			chdir(getenv(OLDPWD))
+NOTE:			chdir(getenv(OLDPWD)
 NOTE:		}
 
 NOTE: if arg[2][0] = '/'
@@ -77,23 +77,23 @@ an existing directory, set curpath to that string and proceed to step 7.
 Otherwise, repeat this step with the next pathname in CDPATH until all
 pathnames have been tested.
 
-??
-
 6. Set curpath to the directory operand.
 
-??
+????
 
 7.If curpath does not begin with a <slash> character, set curpath to the string
 formed by the concatenation of the value of PWD, a <slash> character if the
 value of PWD did not end with a <slash> character, and curpath.
 
 NOTE: 	if (curpath[0] != '\')
-			{	
-				char *cpy = PWD;
-				while (*cpy)
-					cpy++;
-				if (*(--cpy) == )
-				curpath = ft_strjoin(getenv("PWD"), cur)
+NOTE: 	{
+NOTE: 		char *cpy = PWD;
+NOTE: 		while (*cpy)
+NOTE: 			cpy++;
+NOTE: 		if (*(--cpy) != '/')
+NOTE: 			curpath = ft_strhoin("/", curpath, KEEP, DEL)
+NOTE: 		curpath = ft_strjoin(getenv("PWD"), curpath, KEEP, DEL)
+NOTE: 	}
 
 8. The curpath value shall then be converted to canonical form as follows,
 considering each component from beginning to end, in sequence:
@@ -104,37 +104,56 @@ considering each component from beginning to end, in sequence:
 	b. For each dot-dot component, if there is a preceding component and it is
 	neither root nor dot-dot, then:
 
-		i.  If the preceding component does not refer (in the context of
+		i.  If the preceding component does not refer (in the context of		TODO: Also
 		pathname resolution with symbolic links followed) to a directory, then
 		the cd utility shall display an appropriate error message and  no
 		further  steps shall be taken.
+		
+NOTE: 	char *strcpy;
+NOTE: 	strcpy = malloc(sizeof(char) * ft_strlen(curpath));
+NOTE: 	int iterator;
+NOTE: 	iterator = 0;
+NOTE: 	int iterator_copy;
+NOTE: 	iterator_copy = 0;
+NOTE: 	while (curpath[iterator])
+NOTE: 	{
+NOTE: 	if (curpath[iterator] == '/' && curpath[iterator] == '.' && curpath[iterator] == '.')
+NOTE: 	{
+NOTE: 		check_path_valid();								TODO: Follow Symbolic Links Aswell
+NOTE: 		iterator += 3;
+NOTE: 	}
+NOTE: 	else if (curpath[iterator] == '/' && curpath[iterator] == '.')
+NOTE: 		iterator += 2;
+NOTE: 	else if (curpath[iterator] == '/' && curpath[iterator] == '/')
+NOTE: 		iterator += 1;
+NOTE: 	else
+NOTE: 		strcpy[iterator_copy++] = curpath[iterator++];
+NOTE: 	}
+NOTE: 	strcpy[iterator_copy] = curpath[iterator];
+NOTE: 	free(curpath);
+NOTE: 	curpath = strcpy;
 
-		ii.  The preceding component, all <slash> characters separating the
-		preceding component from dot-dot, dot-dot, and all <slash> characters
-		separating dot-dot from the following component (if any) shall be
-		deleted.
 
-	c. An  implementation  may  further  simplify  curpath  by removing any
+	c. An  implementation  may  further  simplify  curpath  by removing any			NOTE: DONE ABOVE
 	trailing <slash> characters that are not also leading <slash> characters,
 	replacing multiple non-leading consecutive <slash> characters with a single
 	<slash>, and replacing three or more leading <slash> characters with a
 	single <slash>.  If, as a result of this canonicalization, the curpath
 	variable is null, no further steps shall be taken.
 
-9. If curpath is longer than {PATH_MAX} bytes (including the terminating null)
-and the directory operand was not longer than {PATH_MAX} bytes (including the
-terminating null), then curpath shall be converted from an  absolute
-pathname  to  an  equivalent relative pathname if possible. This conversion
-shall always be considered possible if the value of PWD, with a trailing <slash>
-added if it does not already have one, is an initial substring of curpath.
-Whether or not it is considered possible under other circumstances is
-unspecified. Implementations may also apply this conversion if curpath is not
-longer than {PATH_MAX} bytes or the directory operand was longer than
-{PATH_MAX} bytes.
 
-10. The cd utility shall then perform actions equivalent to the chdir() function
-called with curpath as the path argument. If these actions fail for any reason,
-the cd utility shall display an appropriate error message and the remainder of
+9. If curpath is longer than {PATH_MAX} bytes (including the terminating null) 			TODO: ?? IS NECESSSARY?
+and the directory operand was not longer than {PATH_MAX} bytes (including the			?? I reckon dont do this as we need to save value in pwd
+terminating null), then curpath shall be converted from an  absolute
+pathname  to  an  equivalent relative pathname if possible.
+
+NOTE: 	chdir(curpath)
+NOTE: 	export() //OLDPWD to be PWD
+NOTE: 	export() //PWD to be curpath
+
+10. The cd utility shall then perform actions equivalent to the chdir() function		chdir(curpath)
+called with curpath as the path argument. If these actions fail for any reason,			export() //OLDPWD to be PWD
+the cd utility shall display an appropriate error message and the remainder of			export() //PWD to be curpath
 this step shall not be executed. If the -P option is not in effect, the PWD
 environment variable shall be set to the value that curpath had on entry to step
 9 (i.e., before conversion to a relative  pathname). If  the  -P option is in
