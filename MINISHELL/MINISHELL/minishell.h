@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 08:23:08 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:59:25 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include <bsd/string.h>
 #include <dirent.h>
 #include <unistd.h>
 #include <limits.h>
+#include <readline/readline.h>
+#include<readline/readline.h>
+#include<readline/history.h>
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						 		MACROS									│
@@ -45,6 +47,7 @@ typedef struct s_env		t_env;
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						 ENVIRONMENT SRUCTURE							│
 //  └───────────────────────────────────────────────────────────────────────┘
+
 // STRUCT DESCRIPTION: t_input
 typedef struct s_env
 {
@@ -58,6 +61,7 @@ extern t_env minishell_env;
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							PARSING STUCTURES							│
 //  └───────────────────────────────────────────────────────────────────────┘
+
 // STRUCT DESCRIPTION: t_pipe_set
 typedef struct s_pipe_set
 {
@@ -96,6 +100,7 @@ typedef struct s_input
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							PARSING FUNCTIONS							│
 //  └───────────────────────────────────────────────────────────────────────┘
+
 void			find_pipes_1(t_pipe_set *set);
 void			interpret_pipe(t_pipe *p);
 void			tokenise(t_pipe *current, char *str);
@@ -105,9 +110,11 @@ char			*expand_wildcards(char *str);
 t_pipe_set		*find_pipe_sets(char *str);
 char			**wildcard_split(char const *s, char c);
 int				in_quotes(char c, int *quote);
+
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						  	STRING FUNCTIONS							│
 //  └───────────────────────────────────────────────────────────────────────┘
+
 char			*ft_substr(char const *s,  int start, int len);
 char			*ft_strjoin(char const *s1, char const *s2, bool KD1, bool KD2);
 char			*ft_strnstr(const char *str, const char *to_find, size_t len);
@@ -118,11 +125,18 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t buff_size);
 int				ft_isspace(char c);
+
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						  ENVIRONMENT FUNCTIONS							│
 //  └───────────────────────────────────────────────────────────────────────┘
+
 t_env			*create_env_variables(char **real_variables);
 bool			key_exists_env(char *key);
 void 			add_key_env(char *key, char *val);
 int				change_val_env(char *key, char *new_val);
 char			*get_val_env(char *key);
+
+
+
+int print_pipes(t_pipe_set *set);
+t_pipe_set *transform_input(char *input);

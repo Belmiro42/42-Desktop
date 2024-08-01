@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:14:29 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 08:37:41 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:09:50 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ t_env minishell_env;
 void create_env_nodes(char *key, t_env **environment_original)
 {
 	t_env *current;
-	t_env *environment;
+	t_env *cpy;
 
 	current = malloc(sizeof(t_env));
 	current->next = NULL;
 	current->key = key;
 	current->value = ft_strdup(getenv(key));
-	environment = *environment_original;
-	if (environment == NULL)
+	cpy = *environment_original;
+	if (cpy == NULL)
 		*environment_original = current;
 	else
 	{
-		while (environment->next)
-				environment = environment->next;
-		environment->next = current;
+		while (cpy->next)
+				cpy = cpy->next;
+		cpy->next = current;
 	}
 }
 

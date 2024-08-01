@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UTILS.c                                            :+:      :+:    :+:   */
+/*   String_Utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:29:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 08:18:22 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 09:46:17 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-
+#include "minishell.h"
 // FUNCTION DESCRIPTION: STR_JOIN
 // joins two strings together
 // frees aswell if you want it to
@@ -43,7 +42,6 @@ char *ft_strjoin(char const *s1, char const *s2, bool free1, bool free2)
 	// printf("ptr: %s\n\n\n", ptr);											// DELETE Checker
 	return (ptr);
 }
-
 // FUNCTION DESCRIPTION: ft_substr
 char	*ft_substr(char const *s, int start, int len)
 {

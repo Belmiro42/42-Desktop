@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 07:54:09 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 08:37:50 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 09:17:37 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int change_val_env(char *key, char *new_val)
 	key_val = get_val_env(key);
 	if (key_val == NULL)
 		return (0);																// TODO: ERROR;
-	free(key_val);
 	key_val = ft_strdup(new_val);													// TODO: Check if malloced. If so remove the strdup
 	return (1);
 }

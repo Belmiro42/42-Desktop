@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 21:41:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/31 08:30:38 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:57:27 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ t_pipe_set *transform_input(char *input)
 	return (cpy);
 }
 
-int main()
+int print_pipes(t_pipe_set *set)
 {
-	t_pipe_set *set;
 	t_pipe_set *tmp_set;
 	t_pipe *pipe;
 	t_pipe *tmp;
@@ -49,9 +48,6 @@ int main()
 	t_output *tmp_o;
 	t_output *output;
 
-
-	set = transform_input("find  >>*i*t* rm -rf");
-	//set = transform_input("  j*  j*.c <j*.c \"as >>*.c < $USER \" $USER \" <<he\"r\'$USER\'e\"\" \'$USER\'doc ls -la >out > out2 | pipe2$QT_IM_MODULE && hola $USER ||  A j* <abc*'a*aa a'$USER*.c 6*.c \" *.c \"  \' *.c\' ");
 	while (set != NULL)
 	{
 		printf("PIPE SET\n\n");
