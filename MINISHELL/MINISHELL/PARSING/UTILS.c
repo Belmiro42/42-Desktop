@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:29:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/31 08:30:36 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 08:18:22 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ char *add_character(char s1, char *s2, bool free1)
 }
 
 // FUNCTION DESCRIPTION: add character
-int bels_isspace(char c) 
+int ft_isspace(char c) 
 {
     if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
         return (1);

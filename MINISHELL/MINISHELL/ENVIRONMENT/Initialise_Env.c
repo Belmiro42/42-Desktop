@@ -6,17 +6,13 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:14:29 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/31 17:28:48 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 08:37:41 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char *get_env(char *key)
-{
-
-
-}
+t_env minishell_env;
 
 void create_env_nodes(char *key, t_env **environment_original)
 {
@@ -26,7 +22,7 @@ void create_env_nodes(char *key, t_env **environment_original)
 	current = malloc(sizeof(t_env));
 	current->next = NULL;
 	current->key = key;
-	current->value = getenv(key);
+	current->value = ft_strdup(getenv(key));
 	environment = *environment_original;
 	if (environment == NULL)
 		*environment_original = current;
@@ -51,13 +47,4 @@ t_env *create_env_variables(char **real_variables)
 		real_variables++;
 	}
 	return (environment_variables);
-}
-
-int main(int argc, char **argv, char **envp)
-{
-	t_env *environment;
-
-	environment = create_env_variables(envp);
-	extern(environment);
-	printf("%s", get_env(argv[1]));
 }

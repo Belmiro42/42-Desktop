@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:45:14 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/31 08:30:31 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 08:18:22 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ char *get_token(char *str, int *iterator)
 
 	quote = 0;
 	token = ft_strdup("");
-	while (bels_isspace(str[*iterator]))
+	while (ft_isspace(str[*iterator]))
 		(*iterator)++;
 	while (((str[*iterator] && str[*iterator] != '<' && str[*iterator] != '>') || quote != 0) && *iterator <= (int)strlen(str))
 	{
-		if (bels_isspace(str[*iterator]) && quote == 0)
+		if (ft_isspace(str[*iterator]) && quote == 0)
 			break;
 		change = in_quotes(str[*iterator], &quote);
 		if (change != 1)
@@ -146,7 +146,7 @@ void tokenise(t_pipe *current, char *str)
 	while (iterator < (int)strlen(str))
 	{
 		change = in_quotes(str[iterator], &quote);
-		while (bels_isspace(str[iterator]))
+		while (ft_isspace(str[iterator]))
 			iterator++;
 		if (str[iterator] == '<' || str[iterator] == '>')
 			trigger_io(current, str, &iterator, true);

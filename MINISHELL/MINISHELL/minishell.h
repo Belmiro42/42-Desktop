@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/31 15:22:44 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 08:23:08 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_env
 	t_env		*next;
 } t_env;
 
+extern t_env minishell_env;
+
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							PARSING STUCTURES							│
 //  └───────────────────────────────────────────────────────────────────────┘
@@ -92,24 +94,35 @@ typedef struct s_input
 } t_input;
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
-//  │							PARSING STUCTURES							│
+//  │							PARSING FUNCTIONS							│
 //  └───────────────────────────────────────────────────────────────────────┘
 void			find_pipes_1(t_pipe_set *set);
 void			interpret_pipe(t_pipe *p);
 void			tokenise(t_pipe *current, char *str);
-char			*ft_strjoin(char const *s1, char const *s2, bool KD1, bool KD2);
-char			*ft_substr(char const *s,  int start, int len);
 char			*variable_expansion(char *input);
 char			*add_character(char s1, char *s2, bool free1);
 char			*expand_wildcards(char *str);
-char			*ft_strdup(const char *str1);
-char			*ft_strnstr(const char *str, const char *to_find, size_t len);
+t_pipe_set		*find_pipe_sets(char *str);
 char			**wildcard_split(char const *s, char c);
-char			*ft_substr(char const *s, int start, int len);
 int				in_quotes(char c, int *quote);
-int				bels_isspace(char c);
+//  ┌───────────────────────────────────────────────────────────────────────┐
+//  │						  	STRING FUNCTIONS							│
+//  └───────────────────────────────────────────────────────────────────────┘
+char			*ft_substr(char const *s,  int start, int len);
+char			*ft_strjoin(char const *s1, char const *s2, bool KD1, bool KD2);
+char			*ft_strnstr(const char *str, const char *to_find, size_t len);
+char			*ft_strdup(const char *str1);
+char			*ft_substr(char const *s, int start, int len);
 int				ft_strlcat(char *dst, const char *src, size_t buff_size);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t buff_size);
-t_pipe_set		*find_pipe_sets(char *str);
+int				ft_isspace(char c);
+//  ┌───────────────────────────────────────────────────────────────────────┐
+//  │						  ENVIRONMENT FUNCTIONS							│
+//  └───────────────────────────────────────────────────────────────────────┘
+t_env			*create_env_variables(char **real_variables);
+bool			key_exists_env(char *key);
+void 			add_key_env(char *key, char *val);
+int				change_val_env(char *key, char *new_val);
+char			*get_val_env(char *key);
