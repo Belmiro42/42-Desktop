@@ -41,3 +41,7 @@ set = transform_input(" ls -la ");
 skips over first character of each pipe
 		Problem 	?
 		Solution: 	?
+
+		            ARGUMS: 1       .
+
+                        ARGUMS: 2       ..
