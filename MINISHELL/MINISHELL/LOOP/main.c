@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:31:56 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 13:29:01 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:56:57 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int main(int argc, char **argv, char **envp)
 		printf("%s\n", get_val_env("PWD"));
 		input = readline(prompt[i]);
 		add_history(input);
-		print_pipes(transform_input(ft_strjoin("  ", input, KEEP, DEL)));
-		free(input);
+		print_pipes(transform_input(input));
 		i =  (i+1) % 3;
 	}
 }

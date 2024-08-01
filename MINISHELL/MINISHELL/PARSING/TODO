@@ -7,12 +7,6 @@ TODO:		Problem 	Were treating every wildcard as starting with * because of the s
 TODO:		Solution: 	?
 
 ¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-TODO:	set = transform_input("ls -la");
-TODO:	// skips over l
-TODO:		Problem 	?
-TODO:		Solution: 	?
-
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 TODO:	set = transform_input("");
 TODO:	Problem:		Need to correct parsing of variables
 TODO:	Solution: 		-
@@ -42,3 +36,8 @@ set = transform_input(" ls -la ");
 	// Creates Two Seperate Arguments
 		Problem		We need a single argument to pass to execve
 		Solution	The problem was a lie
+	set = transform_input("ls -la");
+
+skips over first character of each pipe
+		Problem 	?
+		Solution: 	?
