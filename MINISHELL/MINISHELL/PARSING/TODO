@@ -7,13 +7,16 @@ TODO:		Problem 	Were treating every wildcard as starting with * because of the s
 TODO:		Solution: 	?
 
 ¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-TODO:	set = transform_input("");
-TODO:	Problem:		Need to correct parsing of variables
+TODO:	Problem:		Segfault with input
 TODO:	Solution: 		-
 
 ¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 TODO: ERROR zsh: no matches found: *.c
 
+
+¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
+ARGUMS: 1       .
+ARGUMS: 2       ..
 
 Resolved
 
@@ -39,9 +42,5 @@ set = transform_input(" ls -la ");
 	set = transform_input("ls -la");
 
 skips over first character of each pipe
-		Problem 	?
+		Problem 	the substr had a start of one more and length of one less
 		Solution: 	?
-
-		            ARGUMS: 1       .
-
-                        ARGUMS: 2       ..

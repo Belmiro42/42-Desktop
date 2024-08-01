@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 10:59:25 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:09:39 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@
 //  └───────────────────────────────────────────────────────────────────────┘
 
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
 #include <unistd.h>
 #include <limits.h>
+#include <signal.h>
+#include <stdbool.h>
+#include <readline/history.h>
 #include <readline/readline.h>
-#include<readline/readline.h>
-#include<readline/history.h>
+#include <readline/readline.h>
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						 		MACROS									│
@@ -56,7 +57,7 @@ typedef struct s_env
 	t_env		*next;
 } t_env;
 
-extern t_env minishell_env;
+extern t_env *minishell_env;
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							PARSING STUCTURES							│
@@ -140,3 +141,4 @@ char			*get_val_env(char *key);
 
 int print_pipes(t_pipe_set *set);
 t_pipe_set *transform_input(char *input);
+void signals();

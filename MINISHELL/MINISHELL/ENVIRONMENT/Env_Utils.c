@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 07:54:09 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 09:17:37 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:36:27 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char *get_val_env(char *key)
 {
 	t_env *cpy;
 
-	cpy = &minishell_env;
+	cpy = minishell_env;
 	while (cpy)
 	{
 		if (strcmp(cpy->key, key) == 0)											//  TODO: ft_...
@@ -47,7 +47,7 @@ void add_key_env(char *key, char *val)
 			change_val_env(key, val);
 			return ;
 		}
-	cpy = &minishell_env;
+	cpy = minishell_env;
 	while(cpy->next)
 		cpy = cpy->next;
 	node = malloc(sizeof(t_env));

@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 07:35:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 10:10:18 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:37:25 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 		add_key_env("WTF", "YES");
 		printf("Value is\t%s\n", get_val_env("WTF"));
 	}
-	cpy = &minishell_env;
+	cpy = minishell_env;
 	while (cpy)																	//Invalid Frees?
 	{
 		tmp = cpy;

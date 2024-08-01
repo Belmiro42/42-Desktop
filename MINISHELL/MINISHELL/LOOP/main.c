@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:31:56 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 13:56:57 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:09:32 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int main(int argc, char **argv, char **envp)
 	int		fs;
 	int 	i;
 	char 	prompt[3][80] = {{"   Yᵒᵘ Oᶰˡʸ Lᶤᵛᵉ Oᶰᶜᵉ  >"},{"     (ノಠ益ಠ)ノ彡┻━┻   >"},{ "  ヽ༼ ຈل͜ຈ༼ ▀̿̿Ĺ̯̿̿▀̿ ̿༽Ɵ͆ل͜Ɵ͆ ༽ﾉ >"}};
-	minishell_env = *(create_env_variables(envp));
+	minishell_env = create_env_variables(envp);
 	i = 0;
+	signals();
 	while (true)
 	{
 		printf("%s\n", get_val_env("PWD"));

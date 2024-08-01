@@ -1,1 +1,14 @@
-//https://github.com/MasterCodeMFE/minitalk
+https://github.com/MasterCodeMFE/minitalk
+ 
+
+
+ CTRL-C = SIGINT
+ CTRL-/ = SIGQUIT
+
+◦ ctrl-C displays a new prompt on a new line.
+◦ ctrl-D exits the shell.
+◦ ctrl-\ does nothing.
+
+ A child created via fork(2) inherits a copy of its parent's signal dispositions. 
+
+ NOTE: Upon exit we need to handle the parent and child differently.
