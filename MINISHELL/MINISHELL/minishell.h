@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 17:09:39 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:33:12 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,19 @@
 //  │						 		MACROS									│
 //  └───────────────────────────────────────────────────────────────────────┘
 
-#define DEL		1
-#define KEEP	0
+#define DEL				1
+#define KEEP			0
+#define KRED  			"\x1B[31m"
+#define KGRN  			"\x1B[32m"
+#define KWHT  			"\x1B[37m"
+
+/// DELETE IF NOTE NEEDED
+///#define KNRM  			"\x1B[0m"
+///#define KYEL  			"\x1B[33m"
+///#define KBLU  			"\x1B[34m"
+///#define KMAG  			"\x1B[35m"
+///#define KCYN  			"\x1B[36m"
+///
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						 ENVIRONMENT SRUCTURE							│
@@ -56,8 +67,6 @@ typedef struct s_env
 	char		*value;
 	t_env		*next;
 } t_env;
-
-extern t_env *minishell_env;
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							PARSING STUCTURES							│
@@ -97,6 +106,12 @@ typedef struct s_input
 	char		*filename;
 	t_input		*next;
 } t_input;
+
+//  ┌───────────────────────────────────────────────────────────────────────┐
+//  │							EXTERN VARIABLES							│
+//  └───────────────────────────────────────────────────────────────────────┘
+
+extern t_env *minishell_env;
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │							PARSING FUNCTIONS							│

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2_Pipes.c                                          :+:      :+:    :+:   */
+/*   2_|_Split.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:26:28 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 13:58:08 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:20:52 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,21 @@ t_pipe *make_pipes(char **cpy, int *iterator)
 	return(current);
 }
 
-t_pipe *find_pipes_2(char *str)
+void find_pipes_1(t_pipe_set *set)
 {
 	t_pipe *ret;
 	int iterator;
 	int value;
 	char *cpy;
 	int inquote;
+	char *str;
 
 	cpy = NULL;
 	value = 0;
 	inquote = 0;
 	ret = NULL;
 	iterator = -1;
-
+	str = set->raw_text;
 	while (str[++iterator])
 	{
 		//printf("%s\n", cpy);													// DELETE
@@ -72,11 +73,5 @@ t_pipe *find_pipes_2(char *str)
 			cpy = add_character(str[iterator], cpy, 1);
 	}
 	pipe_to_back(make_pipes(&cpy, &iterator), &ret);
-	return (ret);
-}
-
-void	find_pipes_1(t_pipe_set *set)
-{
-	set->pipe = find_pipes_2(set->raw_text);
-	// free(set->raw_text);
+	set->pipe = ret;
 }

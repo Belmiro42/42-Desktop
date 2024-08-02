@@ -1,42 +1,13 @@
-ERRORS
+TODO
+
+BUILTINS 	- TODO
+EVIRONMENT 	- TODO
+EXECUTION 	- TODO
+PARSING 	- TODO
+SIGNALS 	- TODO
 
 
-
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-TODO:	set = transform_input(" 5* ");																	 
-TODO:	// Fetches 4.5																					 
-TODO:		Problem 	Were treating every wildcard as starting with * because of the strnstr function	 
-TODO:		Solution: 	?																				 
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-
-
-
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-TODO:	set = transform_input(" ls -la ");
-TODO:	// Creates Two Seperate Arguments
-TODO:		Problem		We need a single argument "cmd flags" to pass to execve
-TODO:		Solution	Function to Merge 
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-
-"< Makefile
-
-
-
-
-Resolved
-
-set = transform_input("*.c \"as >>*.c < $USER \" $USER \" <<he\"r\'$USER\'e\" \'$USER\'doc ls -la >out > out2 | pipe2$QT_IM_MODULE && hola $USER ||  A j* <abc*'a*aa a'$USER*.c 6*.c \" *.c \"  \' *.c\' ");
-// This interprets *.c as * for some reason
-	- Problem		Forgot a quote in the input.
-	- Solution		Add Quote in the input
-
-set = transform_input("*.c");
-// Segfault
-	Problem 	Didn't dereference a pointer in a function
-	Solution 	Dereference
-
-set = transform_input("*.c");
-// Gives us * as an argument
-	Problem 	When reverse tracing we add move forward two spaces if theres no io operators. 
-	Its impossible to move back at index 0 so adding two doesnt make sense.
-	Solution 	Dereference
+Exit Status Of EVERYTHING
+	- EXECUTION
+	- SIGNAL HANDLING
+	- BUILTINS

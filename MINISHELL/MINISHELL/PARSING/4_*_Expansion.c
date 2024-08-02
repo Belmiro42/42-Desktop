@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 03:01:41 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 18:24:27 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:06:40 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,6 @@ char *expand_wildcards(char *str)
 	}
 	//printf("Temp %d\tStart %d\tLen %d\n", temp, start, (int)strlen(str));
 	output = ft_strjoin(output, ft_substr(str, temp, strlen(str) - temp), 1, 1);
-	printf("FINAL %s\n", output);
+	//printf("FINAL %s\n", output);
 	return(output);
 }
