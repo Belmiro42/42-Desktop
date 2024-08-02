@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/02 13:33:12 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:17:09 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@
 ///#define KBLU  			"\x1B[34m"
 ///#define KMAG  			"\x1B[35m"
 ///#define KCYN  			"\x1B[36m"
-///
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						 ENVIRONMENT SRUCTURE							│
@@ -86,16 +85,16 @@ typedef struct s_pipe
 {
 	char		*raw_text;
 	char		**args;
+	t_pipe		*next;
 	t_input		*in;
 	t_output	*out;
-	t_pipe		*next;
 } t_pipe;
 
 // STRUCT DESCRIPTION: t_output
 typedef struct s_output
 {
-	bool		write;
 	char		*filename;
+	bool		write;
 	t_output	*next;
 } t_output;
 
@@ -148,8 +147,7 @@ int				ft_isspace(char c);
 
 t_env			*create_env_variables(char **real_variables);
 bool			key_exists_env(char *key);
-void 			add_key_env(char *key, char *val);
-int				change_val_env(char *key, char *new_val);
+void			new_val_env(char *key, char *new_val);
 char			*get_val_env(char *key);
 
 
