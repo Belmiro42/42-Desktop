@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_Pipe_Sets.c                                      :+:      :+:    :+:   */
+/*   1_&&_||_Split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:35:59 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/31 08:30:29 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/03 12:46:37 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_pipe_set *make_pipe_sets(char **cpy, int *value, int *iterator, char *str)
 	current->raw_text = *cpy;													// TODO: STRDUP
 	current->exit_val = *value;
 	current->next = NULL;
-	current->pipe = NULL; 
+	current->pipe = NULL;
 	//printf("IN FUNC -s\t %s\n", current->raw_text);							// DELETE
 	//printf("IN FUNC -d\t %d\n", current->exit_val);							// DELETE
 	if (*str && str[*iterator - 1] == '|')

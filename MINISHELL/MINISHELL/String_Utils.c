@@ -6,40 +6,52 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:29:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 09:46:17 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/03 14:18:12 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// FUNCTION DESCRIPTION: add character
+// adds a character to a string
+char *add_character(char character, char *string, bool free_string)
+{
+	char *char_as_string;
+	char *result;
+
+	char_as_string = malloc(sizeof(char) * 2);
+	if (!char_as_string)
+		return (NULL);
+	char_as_string[0] = character;
+	char_as_string[1] = '\0';
+	result = ft_strjoin(string, char_as_string, free_string, DEL);
+
+	return result;
+}
 // FUNCTION DESCRIPTION: STR_JOIN
 // joins two strings together
 // frees aswell if you want it to
-char *ft_strjoin(char const *s1, char const *s2, bool free1, bool free2)
+char *ft_strjoin(char *s1, char *s2, bool free1, bool free2)
 {
 	char *ptr;
 	int len;
-	// printf("S1: %s \nS2: %s\n", s1, s2);										// DELETE Checker
 
 	if (!s1 && !s2)
 		return (NULL);
 	if (s2 && !s1)
-		return ((char *)s2);
+		return (s2);
 	if (s1 && !s2)
-		return ((char *)s1);
-	len = strlen(s1) + strlen(s2); // TODO: STRLEN STRCPY AND STRLCAT
-	// printf("Len: %d\n", len);												// DELETE Checker
+		return (s1);
+	len = ft_strlen(s1) + ft_strlen(s2);
 	ptr = malloc(len + 1);
 	if (ptr == NULL)
 		return (NULL);
 	ft_strlcpy(ptr, s1, len + 1);
-	// printf("%s\n", ptr);														// DELETE Checker
 	ft_strlcat(ptr, s2, len + 1);
-	// printf("%s\n", ptr);														// DELETE Checker
-	if (free1 && s1) // NOTE: Añadi este variable para liberar si quieres.
-		free((char *)s1);
+	if (free1 && s1) 															// NOTE: Añadi este variable para liberar si quieres.
+		free(s1);
 	if (free2 && s2)
-		free((char *)s2);
-	// printf("ptr: %s\n\n\n", ptr);											// DELETE Checker
+		free(s2);
 	return (ptr);
 }
 // FUNCTION DESCRIPTION: ft_substr
@@ -170,27 +182,22 @@ int in_quotes(char c, int *quote)
 	return (0);
 }
 
-// FUNCTION DESCRIPTION: add character
-// adds a character to a string
-char *add_character(char s1, char *s2, bool free1)
+// FUNCTION DESCRIPTION: ft_isspace
+int ft_isspace(char c)
 {
-	char *ch;
-	char *result;
-
-	ch = malloc(sizeof(char) * 2);
-	if (!ch)
-		return NULL;
-	ch[0] = s1;
-	ch[1] = '\0';
-	result = ft_strjoin(s2, ch, free1, 1);
-	return result;
-}
-
-// FUNCTION DESCRIPTION: add character
-int ft_isspace(char c) 
-{
-    if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
-        return (1);
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
+		return (1);
 	else
 		return (0);
+}
+
+// FUNCTION DESCRIPTION: free_dbl
+void ft_freedbl(char **twodimmalloc)
+{
+	int iterator;
+
+	iterator = 0;
+	while (twodimmalloc[iterator])
+		free(twodimmalloc[iterator++]);
+	free(twodimmalloc);
 }

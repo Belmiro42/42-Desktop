@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:45:14 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 08:18:22 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:12:39 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void trigger_io(t_pipe *current, char *str, int *iterator, bool param)
 			param = false;
 		}
 		filename = get_token(str, iterator);
-		//printf("Filename: %s\n", filename);
 		make_out(current, param, &filename);
 	}
 	else if (str[*iterator] == '<')
@@ -117,7 +116,6 @@ void add_to_args(char ***arr, char *token)
 	int iterator;
 	char **narr;
 
-	//printf("We Here\t%s\n", token);
 	count = 0;
 	iterator = 0;
 	while ((*arr)[count])
@@ -130,9 +128,7 @@ void add_to_args(char ***arr, char *token)
 	}
 	narr[iterator] = token;
 	narr[iterator + 1] = NULL;
-	//int check = 0;
-	//while(narr[check])
-	//	printf("\t%s\n", narr[check++]);
+	free(*arr);
 	(*arr) = narr;
 }
 
@@ -151,7 +147,6 @@ void tokenise(t_pipe *current, char *str)
 		if (str[iterator] == '<' || str[iterator] == '>')
 			trigger_io(current, str, &iterator, true);
 		else
-			//get_token(str, &iterator);
 			add_to_args(&(current->args), get_token(str, &iterator));
 	}
 }

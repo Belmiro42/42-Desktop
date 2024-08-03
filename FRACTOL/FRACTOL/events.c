@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 05:59:49 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/25 00:01:40 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/03 16:30:06 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,13 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
 	if (button == Button4)
 	{
-		fractal->shift_x -= 3 * fractal->zoom
-			* (0.5 - (x / (fractal->size * 1.4)));
+		fractal->shift_x -= 3 * fractal->zoom * (0.5 - (x / (fractal->size * 1.4)));
 		fractal->shift_y += 2 * fractal->zoom * (0.5 - (y / fractal->size));
 		fractal->zoom *= 0.95;
 	}
 	else if (button == Button5)
 	{
-		fractal->shift_x += 3 * fractal->zoom
-			* (0.5 - (x / (fractal->size * 1.4)));
+		fractal->shift_x += 3 * fractal->zoom * (0.5 - (x / (fractal->size * 1.4)));
 		fractal->shift_y -= 2 * fractal->zoom * (0.5 - (y / (fractal->size)));
 		fractal->zoom *= (1 / 0.95);
 	}

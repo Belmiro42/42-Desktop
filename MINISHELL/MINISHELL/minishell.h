@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/02 15:17:09 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/03 14:18:01 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ extern t_env *minishell_env;
 //  │							PARSING FUNCTIONS							│
 //  └───────────────────────────────────────────────────────────────────────┘
 
-void			find_pipes_1(t_pipe_set *set);
+void			find_pipes(t_pipe_set *set);
 void			interpret_pipe(t_pipe *p);
 void			tokenise(t_pipe *current, char *str);
 char			*variable_expansion(char *input);
@@ -131,7 +131,7 @@ int				in_quotes(char c, int *quote);
 //  └───────────────────────────────────────────────────────────────────────┘
 
 char			*ft_substr(char const *s,  int start, int len);
-char			*ft_strjoin(char const *s1, char const *s2, bool KD1, bool KD2);
+char			*ft_strjoin(char *s1, char *s2, bool KD1, bool KD2);
 char			*ft_strnstr(const char *str, const char *to_find, size_t len);
 char			*ft_strdup(const char *str1);
 char			*ft_substr(char const *s, int start, int len);
@@ -140,6 +140,7 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t buff_size);
 int				ft_isspace(char c);
+void			ft_freedbl(char **twodimmalloc);
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						  ENVIRONMENT FUNCTIONS							│
@@ -152,6 +153,5 @@ char			*get_val_env(char *key);
 
 
 
-int print_pipes(t_pipe_set *set);
-t_pipe_set *transform_input(char *input);
+void transform_input(char *input);
 void signals();
