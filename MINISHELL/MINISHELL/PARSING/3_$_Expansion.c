@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:51:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/03 14:30:23 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/04 00:12:23 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ char *get_var_value(int *iterator, char *input, int *quote)
 	count = 0;
 	(*iterator)++;
 	c = input[*iterator + count];
-	while (count < 65 && (c == 95 || (47 < c && c < 58) || (64 < c && c < 92)
-			|| (96 < c && c < 123)) && !(count == 0 && 47 < c && c < 58))
+	while (count < 65 && (c == '_' || ft_isdigit(c) || ft_isalpha(c) ))
 	{
 		var = add_character(c, var, 1);
 		c = input[*iterator + ++count];
+		printf("$$$$$$$$$$$$$$$$$\t%s\n", var);
 	}
 	if (var)
 	{
+		printf("$$$$$$$$$$$$$$$$$\t%s\n", var);
 		val = ft_strdup(getenv(var));
 		free(var);
 		if (*quote == 0)
@@ -67,7 +68,7 @@ void evaluate_var(char *input, char **output, int *quote)
 		in_quotes(input[iterator], quote);
 		// printf("%c\t%d\t%s\n", input[iterator], *quote, *output);			// DELETE Checker
 		if (input[iterator] == '$' && *quote != 1 && input[iterator + 1] != '\0'
-			&& input[iterator + 1] != ' ')
+			&& (ft_isalpha(input[iterator + 1]) || input[iterator + 1] == 95))
 		{
 			value = get_var_value(&iterator, input, quote); 					// NOTE: DOES NOT ITERATE BEYOND SPECIAL CHARACTERS
 			// printf("OUTPUT: %s\n", *output);									// DELETE Checker

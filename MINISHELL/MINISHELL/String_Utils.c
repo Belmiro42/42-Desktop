@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:29:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/03 14:18:12 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/04 00:12:55 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ char	*ft_strdup(const char *str1)
 	int		len;
 	char	*str2;
 
+	if (!str1)
+		return (NULL);
 	len = ft_strlen(str1);
 	str2 = malloc(len + 1);
 	if (str2 == NULL)
@@ -200,4 +202,28 @@ void ft_freedbl(char **twodimmalloc)
 	while (twodimmalloc[iterator])
 		free(twodimmalloc[iterator++]);
 	free(twodimmalloc);
+}
+
+// FUNCTION DESCRIPTION: alpha
+int	ft_isalpha(unsigned short c)
+{
+	if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
+		return (1);
+	return (0);
+}
+
+// FUNCTION DESCRIPTION: alphanumerical
+int	ft_isalnum(unsigned char c)
+{
+	if ((65 <= c && c <= 90) || (97 <= c && c <= 122) || (48 <= c && c <= 57))
+		return (1);
+	return (0);
+}
+
+// FUNCTION DESCRIPTION: digit
+int	ft_isdigit(unsigned short c)
+{
+	if (48 <= c && c <= 57)
+		return (1);
+	return (0);
 }

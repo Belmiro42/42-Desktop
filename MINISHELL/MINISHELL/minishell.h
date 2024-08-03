@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/03 14:18:01 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/04 00:02:49 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,10 @@ size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t buff_size);
 int				ft_isspace(char c);
 void			ft_freedbl(char **twodimmalloc);
+int				ft_isdigit(unsigned short c);
+int				ft_isalpha(unsigned short c);
+int				ft_isalnum(unsigned char c);
+
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						  ENVIRONMENT FUNCTIONS							│

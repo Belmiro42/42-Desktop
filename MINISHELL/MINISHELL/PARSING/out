@@ -1,14 +1,24 @@
-==73660== Memcheck, a memory error detector
-==73660== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==73660== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==73660== Command: ./BELMIRO
-==73660== 
-==73660== 
-==73660== HEAP SUMMARY:
-==73660==     in use at exit: 0 bytes in 0 blocks
-==73660==   total heap usage: 385 allocs, 385 frees, 36,650 bytes allocated
-==73660== 
-==73660== All heap blocks were freed -- no leaks are possible
-==73660== 
-==73660== For lists of detected and suppressed errors, rerun with: -s
-==73660== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==125646== Memcheck, a memory error detector
+==125646== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==125646== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==125646== Command: ./BELMIRO
+==125646== 
+==125646== Invalid free() / delete / delete[] / realloc()
+==125646==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==125646==    by 0x40317C: ft_strjoin (String_Utils.c:54)
+==125646==    by 0x401821: get_var_value (3_$_Expansion.c:49)
+==125646==    by 0x40191C: evaluate_var (3_$_Expansion.c:73)
+==125646==    by 0x4019BB: variable_expansion (3_$_Expansion.c:93)
+==125646==    by 0x402D88: transform_input (TESTING_Main.c:36)
+==125646==    by 0x402FAD: main (TESTING_Main.c:79)
+==125646==  Address 0x40401a is in a r-- mapped file /home/bmatos-d/Desktop/MINISHELL/MINISHELL/PARSING/BELMIRO segment
+==125646== 
+==125646== 
+==125646== HEAP SUMMARY:
+==125646==     in use at exit: 0 bytes in 0 blocks
+==125646==   total heap usage: 88 allocs, 89 frees, 1,509 bytes allocated
+==125646== 
+==125646== All heap blocks were freed -- no leaks are possible
+==125646== 
+==125646== For lists of detected and suppressed errors, rerun with: -s
+==125646== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
