@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:45:14 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/03 17:12:39 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/04 16:18:12 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void trigger_io(t_pipe *current, char *str, int *iterator, bool param)
 	{
 		(*iterator)++;
 		if (str[*iterator] == '<')
+			(*iterator)++;
+		else if (str[*iterator] == '>')
 			(*iterator)++;
 		else
 			param = false;

@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 21:41:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/04 00:14:57 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:31:59 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void transform_input(char *input)
 	}
 }
 
-int main(int argc, char **argv)
-{
-	transform_input("asd$a$USER");
+int main(int argc, char **argv, char **envp)
+{	
+	transform_input("asd$2$a$USER|a");
 }

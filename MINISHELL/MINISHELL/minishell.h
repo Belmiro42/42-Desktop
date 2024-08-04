@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/04 00:02:49 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/04 00:46:22 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,20 +130,22 @@ int				in_quotes(char c, int *quote);
 //  │						  	STRING FUNCTIONS							│
 //  └───────────────────────────────────────────────────────────────────────┘
 
+size_t			ft_strlen(const char *s);
+size_t			ft_strlcpy(char *dst, const char *src, size_t buff_size);
 char			*ft_substr(char const *s,  int start, int len);
 char			*ft_strjoin(char *s1, char *s2, bool KD1, bool KD2);
 char			*ft_strnstr(const char *str, const char *to_find, size_t len);
 char			*ft_strdup(const char *str1);
 char			*ft_substr(char const *s, int start, int len);
+void			ft_freedbl(char **twodimmalloc);
 int				ft_strlcat(char *dst, const char *src, size_t buff_size);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
-size_t			ft_strlen(const char *s);
-size_t			ft_strlcpy(char *dst, const char *src, size_t buff_size);
 int				ft_isspace(char c);
-void			ft_freedbl(char **twodimmalloc);
 int				ft_isdigit(unsigned short c);
 int				ft_isalpha(unsigned short c);
 int				ft_isalnum(unsigned char c);
+int				ft_arrlen(char **arr);
+
 
 
 //  ┌───────────────────────────────────────────────────────────────────────┐

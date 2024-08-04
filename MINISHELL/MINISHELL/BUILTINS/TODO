@@ -1,0 +1,2 @@
+Functions Currently use print i suppose they should use write or putchar or
+smth where you can control the file descriptor weree writing to

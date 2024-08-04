@@ -6,12 +6,12 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:05:45 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/31 08:13:28 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/04 16:40:01 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // NOTE: exit with no options
-void exit_builtin(unsigned int n)
+void exit_builtin(env )
 {
 	//free all my stuff
 	if (!n)

@@ -18,10 +18,6 @@ TODO: ERROR zsh: no matches found: *.c
 ARGUMS: 1       .
 ARGUMS: 2       ..
 
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-$ PARSING
-No iterepreta si no hay string valido
-Para de interpretar con character invalido
 
 CHECK WITH BASHH??
 ¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
@@ -35,25 +31,30 @@ DESCRIPTION: Resolved
 
 set = transform_input("*.c \"as >>*.c < $USER \" $USER \" <<he\"r\'$USER\'e\" \'$USER\'doc ls -la >out > out2 | pipe2$QT_IM_MODULE && hola $USER ||  A j* <abc*'a*aa a'$USER*.c 6*.c \" *.c \"  \' *.c\' ");
 // This interprets *.c as * for some reason
-	- Problem		Forgot a quote in the input.
-	- Solution		Add Quote in the input
+		- Problem		Forgot a quote in the input.
+		- Solution		Add Quote in the input
 
 set = transform_input("*.c");
 // Segfault
-	Problem 	Didn't dereference a pointer in a function
-	Solution 	Dereference
+		- Problem 	Didn't dereference a pointer in a function
+		- Solution 	Dereference
 
 set = transform_input("*.c");
 // Gives us * as an argument
-	Problem 	When reverse tracing we add move forward two spaces if theres no io operators.
-	Its impossible to move back at index 0 so adding two doesnt make sense.
+		- Problem 	When reverse tracing we add move forward two spaces if theres no io operators.
+		- Its impossible to move back at index 0 so adding two doesnt make sense.
 
 set = transform_input(" ls -la ");
 	// Creates Two Seperate Arguments
-		Problem		We need a single argument to pass to execve
-		Solution	The problem was a lie
-	set = transform_input("ls -la");
+		- Problem		We need a single argument to pass to execve
+		- Solution	The problem was a lie
+		- set = transform_input("ls -la");
 
 skips over first character of each pipe
-		Problem 	the substr had a start of one more and length of one less
-		Solution: 	?
+		- Problem 	the substr had a start of one more and length of one less
+		- Solution: 	?
+
+
+$ PARSING
+		- No iterepreta si no hay string valido
+		- Para de interpretar con character invalido

@@ -6,46 +6,35 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:59:34 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/31 08:14:39 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/04 15:55:47 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../minishell.h"
 
-//int echo_builtin(char **arg_cpy, bool n)
-//{
-//       while (arg_cpy)
-//       {
-//              printf("%s", arg);
-//              if (!n)
-//                     printf("\n");
-//       }
-//}
+int echo_builtin(char **args)
+{
+       char   **arg_cpy;
+       bool   n;
 
-
-
-
-// NOTE: echo with option -n
-
-/*
-
-DESCRIPTION: SYNOPSIS
-NOTE:
-echo [SHORT-OPTION]... [STRING]...
-echo LONG-OPTION
-
-DESCRIPTION: FLAGS
-       -n     do not output the trailing newline
+       n = false;
+       arg_cpy = args;
+       arg_cpy++;
+       if (ft_strcmp(*arg_cpy, "-n", 3) == 0)
+              n = true;
+       else
+              ft_putstr_fd(1, *arg_cpy);
+       arg_cpy++;
+       while  (*arg_cpy)
+              ft_putstr_fd(1, *(arg_cpy++));
+       if (n)
+              ft_putstr_fd(1, *(arg_cpy++));
+}
 
 
 
-NOTE:
-       All inputs are space seperated.
-       Does not take into accout input files.
-       * / * for directories but says not manage unspecified special characters
-
-TRY:
-       echo -n "hat" && echo hat
-and    echo "hat" && echo hat
-
-
-*/
+//DESCRIPTION:
+//       -n     do not output the trailing newline
+//       All inputs are space seperated.
+//       Does not take into accout input files.
+//       * / * for directories but says not manage unspecified special characters

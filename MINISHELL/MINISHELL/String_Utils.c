@@ -6,54 +6,11 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:29:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/04 00:12:55 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:31:49 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// FUNCTION DESCRIPTION: add character
-// adds a character to a string
-char *add_character(char character, char *string, bool free_string)
-{
-	char *char_as_string;
-	char *result;
-
-	char_as_string = malloc(sizeof(char) * 2);
-	if (!char_as_string)
-		return (NULL);
-	char_as_string[0] = character;
-	char_as_string[1] = '\0';
-	result = ft_strjoin(string, char_as_string, free_string, DEL);
-
-	return result;
-}
-// FUNCTION DESCRIPTION: STR_JOIN
-// joins two strings together
-// frees aswell if you want it to
-char *ft_strjoin(char *s1, char *s2, bool free1, bool free2)
-{
-	char *ptr;
-	int len;
-
-	if (!s1 && !s2)
-		return (NULL);
-	if (s2 && !s1)
-		return (s2);
-	if (s1 && !s2)
-		return (s1);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	ptr = malloc(len + 1);
-	if (ptr == NULL)
-		return (NULL);
-	ft_strlcpy(ptr, s1, len + 1);
-	ft_strlcat(ptr, s2, len + 1);
-	if (free1 && s1) 															// NOTE: Añadi este variable para liberar si quieres.
-		free(s1);
-	if (free2 && s2)
-		free(s2);
-	return (ptr);
-}
 // FUNCTION DESCRIPTION: ft_substr
 char	*ft_substr(char const *s, int start, int len)
 {
@@ -79,7 +36,7 @@ char	*ft_strdup(const char *str1)
 	char	*str2;
 
 	if (!str1)
-		return (NULL);
+			return(ft_strdup(""));
 	len = ft_strlen(str1);
 	str2 = malloc(len + 1);
 	if (str2 == NULL)
@@ -167,43 +124,6 @@ int	ft_strlcat(char *dst, const char *src, size_t buff_size)
 	return (ret + index);
 }
 
-// FUNCTION DESCRIPTION: in_quotes
-// Whether we are in simple quotes or doubles quotes.
-// 1 DENOTES WE ARE IN SIMPLE QUOTE
-// 2 DENOTES WE ARE IN SIMPLE QUOTE
-int in_quotes(char c, int *quote)
-{
-	if (c == '\'' && *quote == 0) 												// NOTE: 1 significa que estamos dentro de simples
-		return (*quote = 1, 1);
-	else if (c == '\'' && *quote == 1)
-		return (*quote = 0, 1);
-	if (c == '\"' && *quote == 0) 												// NOTE: 2 significa que estamos dentro de dobles
-		return (*quote = 2, 1);
-	else if (c == '\"' && *quote == 2)
-		return (*quote = 0, 1);
-	return (0);
-}
-
-// FUNCTION DESCRIPTION: ft_isspace
-int ft_isspace(char c)
-{
-	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
-		return (1);
-	else
-		return (0);
-}
-
-// FUNCTION DESCRIPTION: free_dbl
-void ft_freedbl(char **twodimmalloc)
-{
-	int iterator;
-
-	iterator = 0;
-	while (twodimmalloc[iterator])
-		free(twodimmalloc[iterator++]);
-	free(twodimmalloc);
-}
-
 // FUNCTION DESCRIPTION: alpha
 int	ft_isalpha(unsigned short c)
 {
@@ -226,4 +146,103 @@ int	ft_isdigit(unsigned short c)
 	if (48 <= c && c <= 57)
 		return (1);
 	return (0);
+}
+
+// FUNCTION DESCRIPTION: putstr
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
+}
+// ¡¡¡¡¡¡ ALL FUNCTIONS NEWm INC STRJOIN ¡¡¡¡¡¡
+// FUNCTION DESCRIPTION: arrlen
+int	ft_arrlen(char **arr)
+{
+	int ret;
+
+	ret = 0;
+	while (arr[ret])
+		ret++;
+	return (ret);
+}
+
+// FUNCTION DESCRIPTION: ft_isspace
+int ft_isspace(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	else
+		return (0);
+}
+
+// FUNCTION DESCRIPTION: free_dbl
+void ft_freedbl(char **twodimmalloc)
+{
+	int iterator;
+
+	iterator = 0;
+	while (twodimmalloc[iterator])
+		free(twodimmalloc[iterator++]);
+	free(twodimmalloc);
+}
+
+// FUNCTION DESCRIPTION: in_quotes
+// Whether we are in simple quotes or doubles quotes.
+// 1 DENOTES WE ARE IN SIMPLE QUOTE
+// 2 DENOTES WE ARE IN SIMPLE QUOTE
+int in_quotes(char c, int *quote)
+{
+	if (c == '\'' && *quote == 0) 												// NOTE: 1 significa que estamos dentro de simples
+		return (*quote = 1, 1);
+	else if (c == '\'' && *quote == 1)
+		return (*quote = 0, 1);
+	if (c == '\"' && *quote == 0) 												// NOTE: 2 significa que estamos dentro de dobles
+		return (*quote = 2, 1);
+	else if (c == '\"' && *quote == 2)
+		return (*quote = 0, 1);
+	return (0);
+}
+
+// FUNCTION DESCRIPTION: add character
+// adds a character to a string
+char *add_character(char character, char *string, bool free_string)
+{
+	char *char_as_string;
+	char *result;
+
+	char_as_string = malloc(sizeof(char) * 2);
+	if (!char_as_string)
+		return (NULL);
+	char_as_string[0] = character;
+	char_as_string[1] = '\0';
+	result = ft_strjoin(string, char_as_string, free_string, DEL);
+
+	return result;
+}
+// FUNCTION DESCRIPTION: STR_JOIN
+// joins two strings together
+// frees aswell if you want it to
+char *ft_strjoin(char *s1, char *s2, bool free1, bool free2)
+{
+	char *ptr;
+	int len;
+
+	if (!s1 && !s2)
+		return (NULL);
+	if (s2 && !s1)
+		return (s2);
+	if (s1 && !s2)
+		return (s1);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	ptr = malloc(len + 1);
+	if (ptr == NULL)
+		return (NULL);
+	ft_strlcpy(ptr, s1, len + 1);
+	ft_strlcat(ptr, s2, len + 1);
+	if (free1 && s1) 															// NOTE: Añadi este variable para liberar si quieres.
+		free(s1);
+	if (free2 && s2)
+		free(s2);
+	return (ptr);
 }
