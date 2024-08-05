@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:29:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/04 17:31:49 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:56:23 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,6 @@ char	*ft_substr(char const *s, int start, int len)
 		return (NULL);
 	ft_strlcpy(ptr, s + start, len + 1);
 	return (ptr);
-}
-
-// FUNCTION DESCRIPTION: ft_strdup
-char	*ft_strdup(const char *str1)
-{
-	int		len;
-	char	*str2;
-
-	if (!str1)
-			return(ft_strdup(""));
-	len = ft_strlen(str1);
-	str2 = malloc(len + 1);
-	if (str2 == NULL)
-		return (NULL);
-	ft_strlcpy(str2, str1, len + 1);
-	return (str2);
 }
 
 // FUNCTION DESCRIPTION: ft_strlcpy
@@ -155,7 +139,23 @@ void	ft_putstr_fd(char *s, int fd)
 		return ;
 	write(fd, s, ft_strlen(s));
 }
-// ¡¡¡¡¡¡ ALL FUNCTIONS NEWm INC STRJOIN ¡¡¡¡¡¡
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	index;
+
+	if (n == 0)
+		return (0);
+	index = 0;
+	while (s1[index] == s2[index] && s1[index] && index < n - 1)
+	{
+		index ++;
+	}
+	return ((unsigned char)s1[index] - (unsigned char)s2[index]);
+}
+
+
+
+// ¡¡¡¡¡¡ ALL FUNCTIONS NEW INC STRJOIN ¡¡¡¡¡¡
 // FUNCTION DESCRIPTION: arrlen
 int	ft_arrlen(char **arr)
 {
@@ -245,4 +245,30 @@ char *ft_strjoin(char *s1, char *s2, bool free1, bool free2)
 	if (free2 && s2)
 		free(s2);
 	return (ptr);
+}
+
+// FUNCTION DESCRIPTION: ft_strdup
+char	*ft_strdup(const char *str1)
+{
+	int		len;
+	char	*str2;
+
+	if (!str1)
+			return(ft_strdup(""));
+	len = ft_strlen(str1);
+	str2 = malloc(len + 1);
+	if (str2 == NULL)
+		return (NULL);
+	ft_strlcpy(str2, str1, len + 1);
+	return (str2);
+}
+int	arr_len(char **arg)
+{
+// TODO: TODO: UNTESTED
+	int	ret;
+
+	ret = 0;
+	while (*(arg++))
+		ret++;
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 03:01:41 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/03 14:27:32 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/05 11:30:39 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void find_prefix(char *str, char **prefix, int *back)
 {
-	*prefix = strdup(" ");
+	*prefix = ft_strdup(" ");
 	//printf("START 1\t  %d\n", *back);
 	if (*back != 0)
 		while(ft_isspace(str[--(*back)]) && *back >= 1)

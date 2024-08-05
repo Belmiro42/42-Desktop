@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:51:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/04 17:28:58 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/05 23:56:04 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // FUNCTION DESCRIPTION: get_var_value
 // Find Var Name From String
 // Get value from env
-char *get_var_value(int *iterator, char *input, int *quote)
+char *get_var_value(int *iterator, char *input, int *quote, t_env *environment)
 {
 	char *var;
 	char *val;
@@ -57,42 +57,42 @@ char *get_var_value(int *iterator, char *input, int *quote)
 // iterator to take us through the input of the command. Recursiveness is not
 // necessary as when you add a variable within a variable it already expands out
 // when assigning value
-void evaluate_var(char *input, char **output, int *quote)
+void evaluate_var(char *input, char **output, int *quote, t_env *env)
 {
-	int iterator;
+	int iter;
 	char *value;
 
-	iterator = 0;
-	while (input[iterator])
+	iter = 0;
+	while (input[iter])
 	{
-		in_quotes(input[iterator], quote);
-		if (input[iterator] == '$' && *quote != 1 && input[iterator + 1] != '\0'
-			&& (ft_isalpha(input[iterator + 1]) || input[iterator + 1] == 95))
+		in_quotes(input[iter], quote);
+		if ((input[iter] == '$' && input[iter + 1] == '?'))
 		{
-			value = get_var_value(&iterator, input, quote); 					// NOTE: DOES NOT ITERATE BEYOND SPECIAL CHARACTERS
-			// printf("OUTPUT: %s\n", *output);									// DELETE Checker
-			*output = ft_strjoin(*output, value, DEL, DEL); 						// TODO: APPEND WITH SINGLE QUOTES ENCLOSING
+			*output = ft_strjoin(*output, get_val_env("?", env), DEL, DEL);
+			iter += 2;
+		}
+		else if ((input[iter] == '$' && *quote != 1 && input[iter + 1] != '\0'
+			&& (ft_isalpha(input[iter + 1]) || input[iter + 1] == 95)))
+		{
+			value = get_var_value(&iter, input, quote, env); 					// NOTE: DOES NOT ITERATE BEYOND SPECIAL CHARACTERS
+			*output = ft_strjoin(*output, value, DEL, DEL);
 		}
 		else
 		{
-			// printf("%c\n", input[iterator]); 								// DELETE Checker
-			*output = add_character(input[iterator], *output, 1); 				// NOTE: LITERALLY ADD THE CHARACTER TO THE STRING NOTE: IF NULL MAKE FIRST
+			*output = add_character(input[iter], *output, 1); 					// NOTE: LITERALLY ADD THE CHARACTER TO THE STRING NOTE: IF NULL MAKE FIRST
 		}
-		iterator++;
+		iter++;
 	}
 }
 // FUNCTION DESCRIPTION: parsing primitive
-char *variable_expansion(char *input)
+char *variable_expansion(char *input, t_env *environment)
 {
 	int quote;
 	char *output;
 
 	quote = 0;
 	output = NULL;
-	evaluate_var(input, &output, &quote);
-	free(input); 																// CONDITIONAL DELETE IDK
+	evaluate_var(input, &output, &quote, environment);
+	free(input);
 	return (output);
 }
-
-																				// TODO: only evaluates if $ is followed by a valid character _ or alph otherwise
-																				// evlautes as '$'

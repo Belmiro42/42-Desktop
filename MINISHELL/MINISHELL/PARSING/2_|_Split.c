@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:26:28 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/03 13:07:17 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:13:53 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_pipe *make_pipes(char **cpy, int *iterator)
 
 	*iterator += 1;																//Skips the pipe symbol
 	current = malloc(sizeof(t_pipe));											// TODO: MALLOC
-	current->raw_text = *cpy;													// TODO: STRDUP
+	current->raw_text = *cpy;													
 	current->in = NULL;
 	current->out = NULL;
 	current->args = malloc(sizeof(char *));
@@ -47,7 +47,7 @@ t_pipe *make_pipes(char **cpy, int *iterator)
 	return(current);
 }
 
-void find_pipes(t_pipe_set *set)
+void find_pipes(t_set *set)
 {
 	t_pipe *ret;
 	int iterator;

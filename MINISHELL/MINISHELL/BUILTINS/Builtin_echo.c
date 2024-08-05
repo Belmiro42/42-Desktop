@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env.c                                      :+:      :+:    :+:   */
+/*   Builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 10:02:21 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/04 02:05:35 by bmatos-d         ###   ########.fr       */
+/*   Created: 2024/08/05 11:25:35 by bmatos-d          #+#    #+#             */
+/*   Updated: 2024/08/05 18:35:54 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int env_builtin(t_env *env)
+int	echo_builtin(char **args)
 {
-	t_env *cpy;
-	while (cpy)
-	{
-		printf("%s=%s\n", cpy->key, cpy->value);
-		cpy = cpy->next;
-	}
-}
+	char	**arg_cpy;
+	bool	flag;
+	int		iterator;
 
-// DESCRIPTION: SYNOPSIS
-//	NOTE: I have a feeling man env is not the function we want ??
-//env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]
-//
-// NOTE: env with no options or arguments
+	flag = false;
+	iterator = 1;
+	if (ft_strncmp(args[iterator], "-n", 3) == 0)
+		flag = true;
+	else
+		ft_putstr_fd(args[iterator], 1);
+	iterator++;
+	while (args[iterator])
+	{
+		if (iterator > 2)
+			ft_putstr_fd(" ", 1);
+		else
+			if (!flag)
+				ft_putstr_fd(" ", 1);
+		ft_putstr_fd(args[iterator++], 1);
+	}
+	if (!flag)
+		ft_putstr_fd("\n", 1);
+	return (0);
+}

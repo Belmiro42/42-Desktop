@@ -1,10 +1,9 @@
 TODO
 
+Check there are no printfs in the project.
+
 BUILTINS 	- TODO
-EVIRONMENT 	- TODO
 EXECUTION 	- TODO
-PARSING 	- TODO
-SIGNALS 	- TODO
 
 
 Exit Status Of EVERYTHING

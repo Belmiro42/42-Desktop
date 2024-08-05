@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:45:14 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/04 16:18:12 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/05 11:30:53 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void make_out(t_pipe *current, bool param, char **filename)
 	f_current->write = param;
 	//printf("FILENAME\t%s\n", *filename);
 	f_current->filename = *filename;
-	f_current->filename = strdup(*filename);
+	f_current->filename = ft_strdup(*filename);
 	//printf("FILENAME: %s\tBOOL\t%d\n", *filename, param);
 	free(*filename);
 	*filename = NULL;

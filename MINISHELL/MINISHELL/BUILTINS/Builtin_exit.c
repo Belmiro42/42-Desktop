@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*   Builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:05:45 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/04 16:40:01 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:13:53 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// NOTE: exit with no options
-void exit_builtin(env )
+#include "../minishell.h"
+
+/*void exit_builtin(char **args, t_env *environment, t_set *original_first)
 {
-	//free all my stuff
-	if (!n)
-		n = "last command exit status"											
-	exit(n)
-}
+// TODO: TODO: UNTESTED
+	if (ft_arrlen(args) > 2)
+	{
+		perror("TOO MANY ARGS");
+	}
+	else if ()
+}*/
 
 /*
 DESCRIPTION: exit

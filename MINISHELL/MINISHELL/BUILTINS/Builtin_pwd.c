@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_unset.c                                    :+:      :+:    :+:   */
+/*   Builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 10:04:08 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/07/30 16:32:11 by bmatos-d         ###   ########.fr       */
+/*   Created: 2024/07/30 10:05:02 by bmatos-d          #+#    #+#             */
+/*   Updated: 2024/08/05 23:54:12 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// 
+#include "../minishell.h"
+
+int	pwd_builtin(char **arg, t_env *env)
+{
+	char	*pwd;
+
+	if (arr_len(arg) > 1)
+	{
+		perror("pwd: too many arguments");
+		return (1);
+	}
+	pwd = get_val_env("PWD", env);
+	ft_putstr_fd(pwd, 1);
+	free(pwd);
+	return (0);
+}
 
 /*
-DESCRIPTION:
-unset [-fv] name...
+DESCRIPTION: SYNOPSIS
+pwd [OPTION]...
 
 NOTE: In our case
-unset name
+pwd
 
-If neither -f nor -v is specified, name refers to a variable; if a variable by that name does not exist, it is unspecified whether a function by that name, if any, shall be unset.
-
-Unsetting a variable or function that was not previously set shall not be considered an error and does not cause the shell to abort.
+use $PWD but need to manage symlinks. If no option is specified, -P is assumed.
+-P, --physical avoid all symlinks
 
 */
