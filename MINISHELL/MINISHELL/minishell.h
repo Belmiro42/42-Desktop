@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 23:53:44 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/06 00:01:43 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ char			*expand_wildcards(char *str);
 char			**wildcard_split(char const *s, char c);
 int				in_quotes(char c, int *quote);
 t_set			*find_sets(char *str);
-t_set			*construct_parser_struct(char *input);
+t_set			*construct_parser_struct(char *input, t_env *environment);
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						  ENVIRONMENT FUNCTIONS							│

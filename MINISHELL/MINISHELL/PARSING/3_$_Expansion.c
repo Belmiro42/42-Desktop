@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:51:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 23:56:04 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/06 00:13:40 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,13 @@ char *get_var_value(int *iterator, char *input, int *quote, t_env *environment)
 		c = input[*iterator + ++count];
 	}
 	printf("VAR:\t %s\n", var);
-	if (var)
-	{
-		val = ft_strdup(getenv(var));
-		free(var);
-		printf("VAL\t%s\n", val);
-		if (*quote == 0)
-			val = ft_strjoin("\'", ft_strjoin(val, "\'", DEL, KEEP), KEEP, DEL);
-	}
+	val = get_val_env(var, environment);
+	if (!val)
+		val = ft_strdup("");
+	free(var);
+	printf("VAL\t%s\n", val);
+	if (*quote == 0)
+		val = ft_strjoin("\'", ft_strjoin(val, "\'", DEL, KEEP), KEEP, DEL);
 	*iterator += count - 1;
 	return (val);
 }
@@ -69,7 +68,7 @@ void evaluate_var(char *input, char **output, int *quote, t_env *env)
 		if ((input[iter] == '$' && input[iter + 1] == '?'))
 		{
 			*output = ft_strjoin(*output, get_val_env("?", env), DEL, DEL);
-			iter += 2;
+			iter += 1;
 		}
 		else if ((input[iter] == '$' && *quote != 1 && input[iter + 1] != '\0'
 			&& (ft_isalpha(input[iter + 1]) || input[iter + 1] == 95)))
