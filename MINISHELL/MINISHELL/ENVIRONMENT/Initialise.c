@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Initialise_Environment.c                           :+:      :+:    :+:   */
+/*   Initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:14:29 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 23:25:19 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/06 22:48:18 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,17 @@ t_env	*create_env_variables(char **real_variables)
 {
 	char	*key;
 	t_env	*environment_variables;
+	t_env	*next;
 
-	environment_variables = NULL;
+	next = malloc(sizeof(t_env));
+	next->next = NULL;
+	next->key = ft_strdup("!");
+	next->value = ft_strdup("0");
 	environment_variables = malloc(sizeof(t_env));
-	environment_variables->next = NULL;
 	environment_variables->key = ft_strdup("?");
 	environment_variables->value = ft_strdup("0");
+	environment_variables->next = next;
+	next->next = NULL;
 	while (*real_variables)
 	{
 		key = ft_substr(*(real_variables), 0, ft_strnstr(*real_variables,

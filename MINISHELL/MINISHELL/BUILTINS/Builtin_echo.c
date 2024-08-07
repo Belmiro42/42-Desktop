@@ -6,18 +6,18 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:25:35 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 18:35:54 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/06 23:45:15 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	echo_builtin(char **args)
+int	echo_builtin(char **args, t_env *environment)
 {
-	char	**arg_cpy;
 	bool	flag;
 	int		iterator;
 
+	(void)environment;
 	flag = false;
 	iterator = 1;
 	if (ft_strncmp(args[iterator], "-n", 3) == 0)
@@ -36,5 +36,5 @@ int	echo_builtin(char **args)
 	}
 	if (!flag)
 		ft_putstr_fd("\n", 1);
-	return (0);
+	return (EXIT_SUCCESS);
 }

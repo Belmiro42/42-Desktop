@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:29:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 16:56:23 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/07 00:20:48 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,48 @@ size_t	ft_strlen(const char *s)
 		;
 	return (index - 1);
 }
+// FUNCTION DESCRIPTION: ITOA TWO FUNCTIONS
+static int	ft_numlen(int n, int base)
+{
+	int	length;
+
+	length = 0;
+	if (n == 0)
+		return (1);
+	while (n)
+	{
+		n = n / base;
+		length++;
+	}
+	return (length);
+}
+char	*ft_itoa(int n)
+{
+	int			len;
+	char		*ret;
+	const char	*digits = "0123456789";
+
+	len = ft_numlen(n, 10);
+	if (n < 0)
+		len++;
+	ret = malloc(sizeof(char) * (len + 1));
+	if (!ret)
+		return (0);
+	ret[len] = 0;
+	if (n == 0)
+		ret[0] = '0';
+	if (n < 0)
+		ret[0] = '-';
+	while (n)
+	{
+		if (n > 0)
+			ret[--len] = digits[n % 10];
+		else
+			ret[--len] = digits[n % 10 * -1];
+		n /= 10;
+	}
+	return (ret);
+}
 
 // FUNCTION DESCRIPTION: ft_strlcat
 int	ft_strlcat(char *dst, const char *src, size_t buff_size)
@@ -153,9 +195,25 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[index] - (unsigned char)s2[index]);
 }
 
+int	ft_atoi(const char *str)
+{
+	int		number;
+	int		valence;
+
+	valence = 1;
+	number = 0;
+	while (((*str >= 9 && *str <= 13) || *str == ' ') && *str++)
+		;
+	if ((*str == '+' || (*str == '-' && valence-- && --valence)) && *str++)
+		;
+	while ((48 <= *str && *str <= 57))
+		number = number * 10 + (*str++ - '0');
+	return (number * valence);
+}
 
 
-// ¡¡¡¡¡¡ ALL FUNCTIONS NEW INC STRJOIN ¡¡¡¡¡¡
+
+// ¡¡¡¡¡¡ ALL FUNCTIONS MODIFICADO INC STRJOIN ¡¡¡¡¡¡
 // FUNCTION DESCRIPTION: arrlen
 int	ft_arrlen(char **arr)
 {

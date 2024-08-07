@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Builtin_unset.c                                    :+:      :+:    :+:   */
+/*   Exit_code.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 10:04:08 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 00:52:41 by bmatos-d         ###   ########.fr       */
+/*   Created: 2024/08/06 17:59:47 by bmatos-d          #+#    #+#             */
+/*   Updated: 2024/08/06 22:44:04 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	unset_builtin(char **arg, t_env *env)
+void exit_code(t_env *env, char *code)
 {
-// TODO: UNTESTED
-	int	iterator;
-	int exit_code;
-
-	iterator = 0;
-	exit_code = EXIT_SUCCESS;
-	while (arg[++iterator])
-	{
-		//printf("%s", arg[iterator])
-		if (ft_strnstr(arg[iterator], "=", ft_strlen(arg[iterator])))
-			exit_code = EXIT_FAILURE;
-		else
-			del_var_env(arg[iterator], &env);
-	}
-	return (exit_code);
+	free(env->value);
+	env->value = ft_strdup(code);
 }

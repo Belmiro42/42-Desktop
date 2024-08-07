@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:51:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/06 00:13:40 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/06 02:05:38 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ char *get_var_value(int *iterator, char *input, int *quote, t_env *environment)
 		var = add_character(c, var, 1);
 		c = input[*iterator + ++count];
 	}
-	printf("VAR:\t %s\n", var);
 	val = get_val_env(var, environment);
 	if (!val)
 		val = ft_strdup("");
 	free(var);
-	printf("VAL\t%s\n", val);
 	if (*quote == 0)
 		val = ft_strjoin("\'", ft_strjoin(val, "\'", DEL, KEEP), KEEP, DEL);
 	*iterator += count - 1;

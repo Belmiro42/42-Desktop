@@ -6,13 +6,14 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:31:56 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 12:20:03 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:29:10 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	magic_free(void *current_struct)
+// TODO: Can we make this work?
+/*static void	magic_free(void *current_struct)
 {
 	t_input	*tmp;
 
@@ -23,7 +24,33 @@ static void	magic_free(void *current_struct)
 		free(((t_input *)tmp)->filename);
 		free(tmp);
 	}
+}*/
+
+static void	free_input(t_input *current_struct)
+{
+	t_input	*tmp;
+
+	while (current_struct)
+	{
+		tmp = current_struct;
+		current_struct = (current_struct)->next;
+		free(tmp->filename);
+		free(tmp);
+	}
 }
+static void	free_output(t_output *current_struct)
+{
+	t_output	*tmp;
+
+	while (current_struct)
+	{
+		tmp = current_struct;
+		current_struct = (current_struct)->next;
+		free(tmp->filename);
+		free(tmp);
+	}
+}
+
 
 void	free_parser_struct(t_set *set)
 {
@@ -38,9 +65,9 @@ void	free_parser_struct(t_set *set)
 		while (pipe)
 		{
 			input = pipe->in;
-			magic_free(input);
+			free_input(input);
 			output = pipe->out;
-			magic_free(output);
+			free_output(output);
 			tmp = pipe;
 			pipe = pipe->next;
 			ft_freedbl(((t_pipe *)tmp)->args);
@@ -53,6 +80,7 @@ void	free_parser_struct(t_set *set)
 		free((t_set *)tmp);
 	}
 }
+//set = (t_set *)((unsigned long)ft_atoi(environment->value));
 
 void	free_env(t_env *env)
 {
@@ -66,10 +94,4 @@ void	free_env(t_env *env)
 		free(tmp->value);
 		free(tmp);
 	}
-}
-
-void	my_exit(t_env *env, t_set *set)
-{
-	free_env(env);
-	free_parser_struct(set);
 }
