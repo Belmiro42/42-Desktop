@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   5_Tokenise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: razamora <razamora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:45:14 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 11:30:53 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 23:20:08 by razamora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void make_out(t_pipe *current, bool param, char **filename)
 	t_output		*f_current;
 
 	f_current = malloc(sizeof(t_output));
-	f_current->write = param;
+	f_current->write = !param;
 	//printf("FILENAME\t%s\n", *filename);
 	f_current->filename = *filename;
 	f_current->filename = ft_strdup(*filename);

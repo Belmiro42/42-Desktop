@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MAIN.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: razamora <razamora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:31:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 14:27:56 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 23:09:19 by razamora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void print_sets(t_set *cpy)
 
 	while(cpy)
 	{
-		printf("PIPESET %s\n", cpy->raw_text);
+		printf("PIPESET %d %s\n", cpy->exit_val, cpy->raw_text);
 		pipe = cpy->pipe;
 		while (pipe)
 		{
@@ -66,6 +66,8 @@ void process_input(char *input, t_set **set, t_env *environment, int *exit)
 		{
 			*set = construct_parser_struct(input, environment);
 			print_sets(*set);
+			//execucion aqui
+			//execucion(set, environment);
 			free_parser_struct(*set, exit, environment);
 		}
 		else
