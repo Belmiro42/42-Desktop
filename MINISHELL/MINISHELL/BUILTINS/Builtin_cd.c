@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:05:16 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 13:48:43 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:10:33 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	gotodir(t_env *environment, char *path)
 		free(cwd);
 		return (EXIT_SUCCESS);
 	}
-	perror("cd: no such file or directory");
+	ft_putstr_fd("Minishell: cd: no such file or directory\n", 2);
 	return (EXIT_FAILURE);
 }
 
@@ -43,7 +43,7 @@ static int	prv_dir(t_env *environment)
 	cwd = NULL;
 	prev_path = get_val_env("OLDPWD", environment);
 	if (!prev_path)
-		perror("cd: OLDPWD not set");
+		ft_putstr_fd("Minishell: cd: OLDPWD not set\n", 2);
 	if (!prev_path)
 			return (EXIT_FAILURE);
 	if (!access(prev_path, R_OK | F_OK))
@@ -59,7 +59,7 @@ static int	prv_dir(t_env *environment)
 		free(prev_path);
 		return (EXIT_SUCCESS);
 	}
-	perror("cd: no such file or directory");
+	ft_putstr_fd("Minishell: cd: no such file or directory\n", 2);
 	return (EXIT_FAILURE);
 }
 
@@ -71,7 +71,7 @@ static int	no_args(t_env *environment)
 	cwd =  NULL;
 	home_path = get_val_env("HOME", environment);
 	if (!home_path)
-			perror("cd: HOME not set");
+			ft_putstr_fd("Minishell: cd: HOME not set\n", 2);
 	if (!home_path)
 			return (EXIT_FAILURE);
 	if (!access(home_path, R_OK | F_OK))
@@ -87,7 +87,7 @@ static int	no_args(t_env *environment)
 		free(home_path);
 		return (EXIT_SUCCESS);
 	}
-	perror("cd: no such file or directory");
+	ft_putstr_fd("Minishell: cd: no such file or directory\n", 2);
 	return (EXIT_FAILURE);
 }
 
@@ -95,7 +95,7 @@ int	cd_builtin(char **args, t_env *environment)
 {
 	if (ft_arrlen(args) > 2)
 	{
-		perror("cd: too many arguments");
+		ft_putstr_fd("Minishell: cd: too many arguments\n", 2);
 		return (EXIT_FAILURE);
 	}
 	if (ft_arrlen(args) == 1)

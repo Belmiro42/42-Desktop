@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:26:47 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 00:17:55 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:08:47 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int parse_error(char *str, t_env *environment)
 		i_o_checker(&ret, str);
 	if (ret)
 	{
-		perror ("Parse Error");
+		ft_putstr_fd("Minishell: parse error", 2);
 		free(environment->value);
 		new_val = ft_itoa(++ret);
 		environment->value = new_val;

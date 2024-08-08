@@ -6,11 +6,12 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:29:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 00:20:48 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:58:07 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
+
 // FUNCTION DESCRIPTION: ft_substr
 char	*ft_substr(char const *s, int start, int len)
 {

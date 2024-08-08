@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 10:28:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 21:56:05 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:09:36 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	export_error_check(char *str, int *exit_status)
 		!(ft_isalpha(str[iter]) || str[iter] == '_' || ft_isdigit(str[iter])))
 			{
 				*exit_status = EXIT_FAILURE;
-				perror("String Not a Valid Identifier");
+				ft_putstr_fd("Minishell: export: String Not a Valid Identifier",
+						 2);
 				return (1);
 			}
 		iter++;

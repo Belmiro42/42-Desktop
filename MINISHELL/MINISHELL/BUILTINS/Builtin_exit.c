@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:05:45 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 13:16:05 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:11:33 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int get_num(char *str, t_env *environment)
 			index ++;
 		if (!str[index] && !ft_isdigit(index))
 		{
-			perror("Needs numerical arguments you numpty");
+			ft_putstr_fd("Minishell: exit: needs numerical arguments", 2);
 			return (2);
 		}
 		index++;
@@ -49,7 +49,7 @@ int exit_builtin(char **args, t_env *environment, t_set *set)
 	{
 		if (ft_arrlen(args) > 2)
 			{
-				perror("TOO MANY ARGUMENTS");
+				ft_putstr_fd("Minishell: exit: too many arguments", 2);
 				exit_code = 1;
 				return(exit_code);
 			}

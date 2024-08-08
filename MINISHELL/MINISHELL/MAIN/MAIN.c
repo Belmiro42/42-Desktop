@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:31:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 13:30:25 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:27:56 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void process_input(char *input, t_set **set, t_env *environment, int *exit)
 }
 
 //DESCRIPTION: MAIN
-/*int main(int argc, char **argv, char **envp)
+int main(int argc, char **argv, char **envp)
 {
 	char	*input;
 	int		exit_code;
@@ -86,15 +86,16 @@ void process_input(char *input, t_set **set, t_env *environment, int *exit)
 	signals();
 	set = NULL;
 	environment = create_env_variables(envp, argc, argv);
-	while (environment->next->value[0] == '0')
+	while (true)
 	{
 		if (!(input = readline("\nWATCHU WAN>")))
 			break ;
 		process_input(input, &set, environment, &exit_code);
 	}
 	free_env(environment);
-	return((unsigned long)set);
-}*/
+
+	return(exit_code);
+}
 
 
 //  LEGACY CODE - EXPORT TEST
@@ -238,7 +239,7 @@ void process_input(char *input, t_set **set, t_env *environment, int *exit)
 }*/
 
 //LEGACY CODE - CD TEST
-int main(int argc, char **argv, char **envp)
+/*int main(int argc, char **argv, char **envp)
 {
 	//char	*input;
 	t_env	*environment;
@@ -256,4 +257,4 @@ int main(int argc, char **argv, char **envp)
 	pwd_builtin(tx2, environment);
 	free_env(environment);
 	return((unsigned long)tq);
-}
+}*/

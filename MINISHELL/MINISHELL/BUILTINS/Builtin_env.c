@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:02:21 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 13:16:53 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:11:13 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	env_builtin(char **args, t_env *environment)
 	cpy = environment;
 	if (ft_arrlen(args) > 2)
 	{
-		perror("ENV: TOO MANY ARGUMENTS");
+		ft_putstr_fd("Minishell: env: too many arguments", 2);
 		return (EXIT_FAILURE);
 	}
 	environment = environment->next;
