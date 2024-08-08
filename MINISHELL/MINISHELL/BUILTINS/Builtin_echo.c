@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:25:35 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/06 23:45:15 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:49:36 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	echo_builtin(char **args, t_env *environment)
 	(void)environment;
 	flag = false;
 	iterator = 1;
-	if (ft_strncmp(args[iterator], "-n", 3) == 0)
+	while (ft_strncmp(args[iterator++], "-n", 3) == 0)
 		flag = true;
-	else
+	if (!flag)
 		ft_putstr_fd(args[iterator], 1);
 	iterator++;
 	while (args[iterator])

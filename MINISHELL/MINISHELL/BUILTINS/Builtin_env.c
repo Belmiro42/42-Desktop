@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:02:21 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 15:27:08 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:16:53 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	env_builtin(char **args, t_env *environment)
 		perror("ENV: TOO MANY ARGUMENTS");
 		return (EXIT_FAILURE);
 	}
-	environment = environment->next->next;
+	environment = environment->next;
 	while (environment)
 	{
 		ft_putstr_fd(environment->key, 1);

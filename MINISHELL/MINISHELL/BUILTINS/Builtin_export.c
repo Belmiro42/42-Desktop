@@ -6,17 +6,11 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 10:28:00 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 11:27:51 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/07 21:56:05 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-/*we get our first node
-	create a corresponding first node with initial value zero
-	iterate through the list
-		compare with strcmp
-			if bigger than */
 
 static int	export_error_check(char *str, int *exit_status)
 {
@@ -61,8 +55,6 @@ int	export_builtin(char **arg, t_env *environment)
 			free(value);
 		}
 	}
-	if (ft_arrlen(arg) == 1)
-		print_sorted(environment);
 	return (exit_status);
 }
 

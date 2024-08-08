@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:05:45 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 15:29:56 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:16:05 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ static int get_num(char *str, t_env *environment)
 	}
 	free(environment->value);
 	environment->value = ft_strdup(str);
-	ºft_atoi(str);
+	index = ft_atoi(str);
+	while (index > 255 || index < 0)
+		index %= 256;
+	return (index);
 }
 
-int exit_builtin(char **args, t_env *environment)
+int exit_builtin(char **args, t_env *environment, t_set *set)
 {
 	int exit_code;
 
@@ -52,10 +55,12 @@ int exit_builtin(char **args, t_env *environment)
 			}
 		exit_code = get_num(args[1], environment);
 	}
-	free(environment->next->value);
-	environment->next->value = ft_strdup("1");
-	return(ft_atoi(environment->value));
+	free_parser_struct(set, &set, environment);
+	free_env(environment);
+	printf("LEFT IN EXIT");
+	exit(exit_code);
 }
 
-// Works but is a bit ugly. Exit triggers a trap signal. Maybe we can rework
-// using the trap signal
+// Works but is a bit ugly.
+// Exit triggers a trap signal. Maybe we can rework
+// using the trap signal if shit

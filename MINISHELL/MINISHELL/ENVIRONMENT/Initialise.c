@@ -6,13 +6,13 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:14:29 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/06 22:48:18 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:50:54 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	create_env_nodes(char *key, t_env **environment_original)
+static void	create_env_nodes(char *key, t_env **environment_original)
 {
 	t_env	*current;
 	t_env	*cpy;
@@ -27,21 +27,17 @@ void	create_env_nodes(char *key, t_env **environment_original)
 	cpy->next = current;
 }
 
-t_env	*create_env_variables(char **real_variables)
+t_env	*create_env_variables(char **real_variables, int argc, char **argv)
 {
 	char	*key;
 	t_env	*environment_variables;
-	t_env	*next;
 
-	next = malloc(sizeof(t_env));
-	next->next = NULL;
-	next->key = ft_strdup("!");
-	next->value = ft_strdup("0");
+	(void)(argc + (int)((unsigned long)(argv)));
+
 	environment_variables = malloc(sizeof(t_env));
 	environment_variables->key = ft_strdup("?");
 	environment_variables->value = ft_strdup("0");
-	environment_variables->next = next;
-	next->next = NULL;
+	environment_variables->next = NULL;
 	while (*real_variables)
 	{
 		key = ft_substr(*(real_variables), 0, ft_strnstr(*real_variables,

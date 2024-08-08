@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 01:49:54 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 15:26:15 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:37:22 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 //  └───────────────────────────────────────────────────────────────────────┘
 
 #include <stdio.h>
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
@@ -139,7 +140,7 @@ int				parse_error(char *str, t_env *environemnt);
 //  │						  ENVIRONMENT FUNCTIONS							│
 //  └───────────────────────────────────────────────────────────────────────┘
 
-t_env			*create_env_variables(char **real_variables);
+t_env			*create_env_variables(char **envp, int argc, char** argv);
 bool			key_exists_env(char *key, t_env *environment);
 void			new_val_env(char *key, char *new_val, t_env **environment);
 char			*get_val_env(char *key, t_env *environment);
@@ -151,7 +152,7 @@ void			del_var_env(char *key, t_env **environment);
 //  └───────────────────────────────────────────────────────────────────────┘
 
 void			free_env(t_env *env);
-void			free_parser_struct(t_set *set, char **pointer, t_env *env);
+void			free_parser_struct(t_set *set, int *pointer, t_env *env);
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
 //  │						  	    BUILTINS								│
@@ -163,6 +164,7 @@ int			echo_builtin(char **args, t_env *environment);
 int			pwd_builtin(char **arg, t_env *environment);
 int			exit_builtin(char **args, t_env *environment);
 int			unset_builtin(char **args, t_env *environment);
+int			cd_builtin();
 
 
 //  ┌───────────────────────────────────────────────────────────────────────┐
@@ -170,9 +172,3 @@ int			unset_builtin(char **args, t_env *environment);
 //  └───────────────────────────────────────────────────────────────────────┘
 
 void			signals();
-
-
-
-
-
-void			exit_code(t_env *env, char *code);

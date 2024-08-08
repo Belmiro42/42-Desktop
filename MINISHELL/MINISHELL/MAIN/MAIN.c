@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:31:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 15:25:29 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:30:25 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //¡¡¡¡TODO: https://stackoverflow.com/questions/5412761/using-colors-with-printf
 
-//LEGACY CODE
+//LEGACY CODE -PRINT STRUCTURE
 static void print_sets(t_set *cpy)
 {
 	t_pipe *pipe;
@@ -58,34 +58,43 @@ static void print_sets(t_set *cpy)
 	}
 }
 
+void process_input(char *input, t_set **set, t_env *environment, int *exit)
+{
+	if (input[0] != 0)
+	{
+		if (!parse_error(input, environment))
+		{
+			*set = construct_parser_struct(input, environment);
+			print_sets(*set);
+			free_parser_struct(*set, exit, environment);
+		}
+		else
+			*exit = 2;
+	}
+	add_history(input);
+	free(input);
+}
 
-int main(int argc, char **argv, char **envp)
+//DESCRIPTION: MAIN
+/*int main(int argc, char **argv, char **envp)
 {
 	char	*input;
+	int		exit_code;
 	t_env	*environment;
 	t_set	*set;
 
 	signals();
-	(void)argc;
-	(void)argv;
-	environment = create_env_variables(envp);
+	set = NULL;
+	environment = create_env_variables(envp, argc, argv);
 	while (environment->next->value[0] == '0')
 	{
-		input = readline("\n         >");
-		if (!input)
-			break;
-		if (input[0] != 0 && !parse_error(input, environment))
-		{
-			set = construct_parser_struct(input, environment);
-			print_sets(set);
-			free_parser_struct(set, &set, environment);
-		}
-		add_history(input);
-		free(input);
+		if (!(input = readline("\nWATCHU WAN>")))
+			break ;
+		process_input(input, &set, environment, &exit_code);
 	}
 	free_env(environment);
-	return((int)set);
-}
+	return((unsigned long)set);
+}*/
 
 
 //  LEGACY CODE - EXPORT TEST
@@ -209,3 +218,42 @@ int main(int argc, char **argv, char **envp)
 	free_env(environment);
 	return((unsigned long)tq);
 }*/
+
+//LEGACY CODE - PWD TEST
+/*int main(int argc, char **argv, char **envp)
+{
+	//char	*input;
+	t_env	*environment;
+	//t_set	*set;
+	char	*tq = "exit";
+	char	*qe = "5";
+	char	*qu = "7";
+	char	*qr = NULL;
+	char 	*txt[5] = {tq,qr, qu, qe, qr};
+
+	environment = create_env_variables(envp, argc, argv);
+	pwd_builtin(txt, environment);
+	free_env(environment);
+	return((unsigned long)tq);
+}*/
+
+//LEGACY CODE - CD TEST
+int main(int argc, char **argv, char **envp)
+{
+	//char	*input;
+	t_env	*environment;
+	//t_set	*set;
+	char	*tq = "exit";
+	char	*qe = "-";
+	char	*qu = "7";
+	char	*qr = NULL;
+	char 	*txt[5] = {tq, qe, qr, qe, qr};
+	char 	*tx2[5] = {tq, qr, qu, qe, qr};
+
+	environment = create_env_variables(envp, argc, argv);
+	pwd_builtin(tx2, environment);
+	cd_builtin(txt, environment);
+	pwd_builtin(tx2, environment);
+	free_env(environment);
+	return((unsigned long)tq);
+}

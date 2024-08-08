@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:31:56 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 15:29:10 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:10:41 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,35 +52,33 @@ static void	free_output(t_output *current_struct)
 }
 
 
-void	free_parser_struct(t_set *set)
+void	free_parser_struct(t_set *set, int *exit, t_env *environment)
 {
 	void		*tmp;
 	t_pipe		*pipe;
-	t_input		*input;
-	t_output	*output;
 
-	while (set)
+	while ((unsigned long)set > (unsigned long)255)
 	{
 		pipe = set->pipe;
 		while (pipe)
 		{
-			input = pipe->in;
-			free_input(input);
-			output = pipe->out;
-			free_output(output);
+			tmp = pipe->in;
+			free_input((t_input *)tmp);
+			tmp = pipe->out;
+			free_output((t_output *)tmp);
 			tmp = pipe;
 			pipe = pipe->next;
 			ft_freedbl(((t_pipe *)tmp)->args);
 			free((((t_pipe *)tmp)->raw_text));
 			free(tmp);
 		}
-		tmp = (void *)set;
+		tmp = set;
 		set = set->next;
 		free(((t_set *)tmp)->raw_text);
 		free((t_set *)tmp);
 	}
+	*exit = ft_atoi(environment->value);
 }
-//set = (t_set *)((unsigned long)ft_atoi(environment->value));
 
 void	free_env(t_env *env)
 {
