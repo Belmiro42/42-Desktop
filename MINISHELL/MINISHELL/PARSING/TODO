@@ -1,3 +1,5 @@
+DESCRIPTION: WILDCARD INTERPRETATION
+
 ¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 TODO:	set = transform_input(" 5* ");
 TODO:	// Fetches 4.5
@@ -12,19 +14,9 @@ TODO: ERROR zsh: no matches found: *.c
 ARGUMS: 1       .
 ARGUMS: 2       ..
 
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-TODO:	Problem:		Segfault with input
-TODO:	Solution: 		-
 
 
 CHECK WITH BASHH??
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-ls <>a
-
-¡¡TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-cat <<$USER
-
-
 DESCRIPTION: Resolved
 
 set = transform_input("*.c \"as >>*.c < $USER \" $USER \" <<he\"r\'$USER\'e\" \'$USER\'doc ls -la >out > out2 | pipe2$QT_IM_MODULE && hola $USER ||  A j* <abc*'a*aa a'$USER*.c 6*.c \" *.c \"  \' *.c\' ");
@@ -56,3 +48,8 @@ skips over first character of each pipe
 $ PARSING
 		- No iterepreta si no hay string valido
 		- Para de interpretar con character invalido
+
+cat <<$USER
+
+Problem:		Segfault with emptyinput
+Solution: 		-

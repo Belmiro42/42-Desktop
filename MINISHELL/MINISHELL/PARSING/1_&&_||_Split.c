@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:35:59 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 16:19:57 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:50:53 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,28 @@
 
 // FUNCTION DESCRIPTION: add_to_back
 // Adds the current node to the back of the list
-void add_to_back(t_set *current, t_set **head)
+void	add_to_back(t_set *current, t_set **head)
 {
-	t_set *cpy;
+	t_set	*cpy;
 
 	cpy = *head;
 	if (*head == NULL)
 	{
 		*head = current;
-		return;
+		return ;
 	}
 	while (cpy->next)
 		cpy = cpy->next;
 	cpy->next = current;
 }
 
-t_set *make_sets(char **cpy, int *value, int *iterator, char *str)
+t_set	*make_sets(char **cpy, int *value, int *iterator, char *str)
 {
-	t_set *current;
+	t_set	*current;
 
 	// NOTE: Comprobamos que no estemos al final del input
 	// NOTE: Anadimos dor para saltar de '|| asd' hasta '|| asd'
-	// NOTE:							  ^                ^
+	// NOTE:								^                ^
 	if (*iterator < (int)ft_strlen(str))
 		*iterator += 2;
 	current = malloc(sizeof(t_set));
@@ -52,24 +52,22 @@ t_set *make_sets(char **cpy, int *value, int *iterator, char *str)
 		*value = 2;
 	if (*cpy)
 		*cpy = NULL;
-	return(current);
+	return (current);
 }
 
-t_set *find_sets(char *str)
+t_set	*find_sets(char *str)
 {
-	t_set *ret;
-	int iterator;
-	int value;
-	char *cpy;
-	int inquote;
+	t_set	*ret;
+	int		iterator;
+	int		value;
+	char	*cpy;
+	int		inquote;
 
 	cpy = NULL;
 	value = 0;
 	inquote = 0;
 	ret = NULL;
 	iterator = 0;
-
-
 	while (str[iterator])
 	{
 		in_quotes(str[iterator], &inquote);

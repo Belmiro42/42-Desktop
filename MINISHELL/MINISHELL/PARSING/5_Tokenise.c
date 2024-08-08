@@ -6,13 +6,13 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:45:14 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 11:30:53 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:52:40 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char *get_token(char *str, int *iterator)
+char	*get_token(char *str, int *iterator)
 {
 	char	*token;
 	int		quote;
@@ -22,10 +22,11 @@ char *get_token(char *str, int *iterator)
 	token = ft_strdup("");
 	while (ft_isspace(str[*iterator]))
 		(*iterator)++;
-	while (((str[*iterator] && str[*iterator] != '<' && str[*iterator] != '>') || quote != 0) && *iterator <= (int)strlen(str))
+	while (((str[*iterator] && str[*iterator] != '<' && str[*iterator] != '>')
+			|| quote != 0) && *iterator <= (int)strlen(str))
 	{
 		if (ft_isspace(str[*iterator]) && quote == 0)
-			break;
+			break ;
 		change = in_quotes(str[*iterator], &quote);
 		if (change != 1)
 			token = add_character(str[*iterator], token, 1);
@@ -36,17 +37,15 @@ char *get_token(char *str, int *iterator)
 	return (token);
 }
 
-void make_out(t_pipe *current, bool param, char **filename)
+void	make_out(t_pipe *current, bool param, char **filename)
 {
-	t_output		*cpy;
-	t_output		*f_current;
+	t_output	*cpy;
+	t_output	*f_current;
 
 	f_current = malloc(sizeof(t_output));
 	f_current->write = param;
-	//printf("FILENAME\t%s\n", *filename);
 	f_current->filename = *filename;
 	f_current->filename = ft_strdup(*filename);
-	//printf("FILENAME: %s\tBOOL\t%d\n", *filename, param);
 	free(*filename);
 	*filename = NULL;
 	f_current->next = NULL;
@@ -60,15 +59,15 @@ void make_out(t_pipe *current, bool param, char **filename)
 	else
 		current->out = f_current;
 }
-void make_in(t_pipe *current, bool param, char **filename)
+
+void	make_in(t_pipe *current, bool param, char **filename)
 {
-	t_input		*cpy;
-	t_input		*f_current;
+	t_input	*cpy;
+	t_input	*f_current;
 
 	f_current = malloc(sizeof(t_input));
 	f_current->heredoc = param;
 	f_current->filename = strdup(*filename);
-	//printf("FILENAME: %s\tBOOL\t%d\n", *filename, param);
 	free(*filename);
 	*filename = NULL;
 	f_current->next = NULL;
@@ -83,7 +82,7 @@ void make_in(t_pipe *current, bool param, char **filename)
 		current->in = f_current;
 }
 
-void trigger_io(t_pipe *current, char *str, int *iterator, bool param)
+void	trigger_io(t_pipe *current, char *str, int *iterator, bool param)
 {
 	char	*filename;
 
@@ -112,11 +111,11 @@ void trigger_io(t_pipe *current, char *str, int *iterator, bool param)
 	}
 }
 
-void add_to_args(char ***arr, char *token)
+void	add_to_args(char ***arr, char *token)
 {
-	int count;
-	int iterator;
-	char **narr;
+	int		count;
+	int		iterator;
+	char	**narr;
 
 	count = 0;
 	iterator = 0;
@@ -134,11 +133,11 @@ void add_to_args(char ***arr, char *token)
 	(*arr) = narr;
 }
 
-void tokenise(t_pipe *current, char *str)
+void	tokenise(t_pipe *current, char *str)
 {
-	int		iterator;
-	int		quote;
-	int		change;
+	int	iterator;
+	int	quote;
+	int	change;
 
 	iterator = 0;
 	while (iterator < (int)strlen(str))

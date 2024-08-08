@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:05:16 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 14:10:33 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:28:37 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	gotodir(t_env *environment, char *path)
 {
-	char *new_path;
-	char *cwd;
+	char	*new_path;
+	char	*cwd;
 
 	cwd = NULL;
 	new_path = path;
@@ -37,15 +37,15 @@ static int	gotodir(t_env *environment, char *path)
 
 static int	prv_dir(t_env *environment)
 {
-	char *prev_path;
-	char *cwd;
+	char	*prev_path;
+	char	*cwd;
 
 	cwd = NULL;
 	prev_path = get_val_env("OLDPWD", environment);
 	if (!prev_path)
 		ft_putstr_fd("Minishell: cd: OLDPWD not set\n", 2);
 	if (!prev_path)
-			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	if (!access(prev_path, R_OK | F_OK))
 	{
 		cwd = getcwd(cwd, 0);
@@ -65,15 +65,15 @@ static int	prv_dir(t_env *environment)
 
 static int	no_args(t_env *environment)
 {
-	char *home_path;
-	char *cwd;
+	char	*home_path;
+	char	*cwd;
 
-	cwd =  NULL;
+	cwd = NULL;
 	home_path = get_val_env("HOME", environment);
 	if (!home_path)
-			ft_putstr_fd("Minishell: cd: HOME not set\n", 2);
+		ft_putstr_fd("Minishell: cd: HOME not set\n", 2);
 	if (!home_path)
-			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	if (!access(home_path, R_OK | F_OK))
 	{
 		cwd = getcwd(cwd, 0);
@@ -101,19 +101,19 @@ int	cd_builtin(char **args, t_env *environment)
 	if (ft_arrlen(args) == 1)
 	{
 		if (no_args(environment))
-			return(EXIT_SUCCESS);
-		return(EXIT_FAILURE);
+			return (EXIT_SUCCESS);
+		return (EXIT_FAILURE);
 	}
 	if (args[1][0] == '-' && !args[1][1])
 	{
 		if (prv_dir(environment))
-			return(EXIT_SUCCESS);
-		return(EXIT_FAILURE);
+			return (EXIT_SUCCESS);
+		return (EXIT_FAILURE);
 	}
 	else
 	{
 		if (gotodir(environment, args[1]))
-			return(EXIT_SUCCESS);
-		return(EXIT_FAILURE);
+			return (EXIT_SUCCESS);
+		return (EXIT_FAILURE);
 	}
 }

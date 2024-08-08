@@ -1,23 +1,8 @@
-TODO
-
-Check there are no printfs in the project.
-
-BUILTINS 	- TODO
 EXECUTION 	- TODO
-
-
-Exit Status Of EVERYTHING
-	- EXECUTION
-	- SIGNAL HANDLING
-	- BUILTINS
-
-
 
 TODO TOMORROW
 	Malloc
 	If nothing else to do all functions less than 25 lines.
-	
+
 
 Sigint from heredoc or any blocking should give you exit 130
-echo -n -n -n -n -n = echo  -n
-

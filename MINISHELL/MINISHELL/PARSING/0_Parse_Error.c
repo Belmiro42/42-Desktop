@@ -6,17 +6,17 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:26:47 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 14:08:47 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:48:46 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void i_o_checker(int *ret, char *str)
+static void	i_o_checker(int *ret, char *str)
 {
-	int quote;
-	int pos;
-	bool i_o_valid;
+	int		quote;
+	int		pos;
+	bool	i_o_valid;
 
 	quote = 0;
 	pos = 0;
@@ -31,8 +31,8 @@ static void i_o_checker(int *ret, char *str)
 				pos++;
 			while (ft_isspace(str[pos]))
 				pos++;
-			if (str[pos] == '|' || str[pos] == '<'|| str[pos] == '>' || (str[pos] == '&' &&
-				str[pos + 1] == '&' ) || !str[pos])
+			if (str[pos] == '|' || str[pos] == '<' || str[pos] == '>'
+				|| (str[pos] == '&' && str[pos + 1] == '&') || !str[pos])
 				return ((void)(*ret = 1));
 		}
 		else
@@ -40,11 +40,11 @@ static void i_o_checker(int *ret, char *str)
 	}
 }
 
-static void pipe_checker(int *ret, char *str)
+static void	pipe_checker(int *ret, char *str)
 {
-	int quote;
-	int pos;
-	bool pipe_valid;
+	int		quote;
+	int		pos;
+	bool	pipe_valid;
 
 	quote = 0;
 	pos = -1;
@@ -52,9 +52,9 @@ static void pipe_checker(int *ret, char *str)
 	while (str[++pos])
 	{
 		in_quotes(str[pos], &quote);
-		if (!(!quote && (str[pos] == '|' || (str[pos] == '&' && str[pos + 1] ==
-			'&'))) && (quote || !ft_isspace(str[pos])))
-				pipe_valid = 1;
+		if (!(!quote && (str[pos] == '|' || (str[pos] == '&' && str[pos
+							+ 1] == '&'))) && (quote || !ft_isspace(str[pos])))
+			pipe_valid = 1;
 		else if (ft_isspace(str[pos]))
 			;
 		else
@@ -62,16 +62,16 @@ static void pipe_checker(int *ret, char *str)
 			if (str[pos] && str[pos] == str[pos + 1])
 				pos++;
 			if (!pipe_valid)
-				return((void)(*ret = 1));
+				return ((void)(*ret = 1));
 			pipe_valid = 0;
 		}
 	}
-	return((void)(*ret = !pipe_valid));
+	return ((void)(*ret = !pipe_valid));
 }
 
 static void	quote_checker(int *ret, char *str)
 {
-	int quote;
+	int	quote;
 
 	quote = 0;
 	while (*str)
@@ -80,9 +80,9 @@ static void	quote_checker(int *ret, char *str)
 		*ret = 1;
 }
 
-static void whitespace_only(int *ret, char *str)
+static void	whitespace_only(int *ret, char *str)
 {
-	int all_ws;
+	int	all_ws;
 
 	all_ws = 1;
 	while (*str)
@@ -95,10 +95,10 @@ static void whitespace_only(int *ret, char *str)
 		*ret = 1;
 }
 
-int parse_error(char *str, t_env *environment)
+int	parse_error(char *str, t_env *environment)
 {
-	int ret;
-	char *new_val;
+	int		ret;
+	char	*new_val;
 
 	ret = 0;
 	whitespace_only(&ret, str);

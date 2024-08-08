@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:31:56 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 13:10:41 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:07:15 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	free_input(t_input *current_struct)
 		free(tmp);
 	}
 }
+
 static void	free_output(t_output *current_struct)
 {
 	t_output	*tmp;
@@ -50,7 +51,6 @@ static void	free_output(t_output *current_struct)
 		free(tmp);
 	}
 }
-
 
 void	free_parser_struct(t_set *set, int *exit, t_env *environment)
 {

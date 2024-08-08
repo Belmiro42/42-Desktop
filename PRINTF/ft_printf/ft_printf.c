@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 20:50:41 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/05/23 10:21:55 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:34:05 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	ft_printf(char const *str, ...)
 		do_stuff(str, args, &index, &count);
 	}
 	return (count);
+	va_end(args);
 }
 
 #include <stdio.h>

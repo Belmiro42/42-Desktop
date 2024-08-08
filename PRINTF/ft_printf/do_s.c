@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:13:26 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/05/19 20:18:29 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:48:18 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,8 @@ void	do_s(char *c, unsigned int *index, unsigned int *length)
 
 	index_s = 0;
 	if (c == NULL)
-	{
-		write(1, "(null)", 6);
-		*length += 6;
-		*index += 2;
-		return ;
-	}
+		*length += write(1, "(null)", 6);
 	while (c[index_s])
-	{
-		write(1, &c[index_s++], 1);
-		(*length) += 1;
-	}
+		(*length) += write(1, &c[index_s++], 1);
 	*index += 2;
 }

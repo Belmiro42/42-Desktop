@@ -6,17 +6,17 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 21:41:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/06 00:09:37 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:49:45 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_set *construct_parser_struct(char *input, t_env *environment)
+t_set	*construct_parser_struct(char *input, t_env *environment)
 {
-	t_pipe		*pipe;
-	t_set		*set;
-	t_set		*set_cpy;
+	t_pipe	*pipe;
+	t_set	*set;
+	t_set	*set_cpy;
 
 	set = find_sets(input);
 	set_cpy = set;

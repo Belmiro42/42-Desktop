@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 05:26:28 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/05 12:13:53 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:55:06 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,28 @@
 
 // ¡¡TODO: PARSE ERROR
 
-
-void pipe_to_back(t_pipe *current, t_pipe **head)
+void	pipe_to_back(t_pipe *current, t_pipe **head)
 {
-	t_pipe *cpy;
+	t_pipe	*cpy;
 
 	cpy = *head;
 	if (*head == NULL)
 	{
 		*head = current;
-		return;
+		return ;
 	}
 	while (cpy->next)
 		cpy = cpy->next;
 	cpy->next = current;
 }
 
-t_pipe *make_pipes(char **cpy, int *iterator)
+t_pipe	*make_pipes(char **cpy, int *iterator)
 {
-	t_pipe *current;
+	t_pipe	*current;
 
-	*iterator += 1;																//Skips the pipe symbol
-	current = malloc(sizeof(t_pipe));											// TODO: MALLOC
-	current->raw_text = *cpy;													
+	*iterator += 1; // Skips the pipe symbol
+	current = malloc(sizeof(t_pipe));
+	current->raw_text = *cpy;
 	current->in = NULL;
 	current->out = NULL;
 	current->args = malloc(sizeof(char *));
@@ -44,17 +43,17 @@ t_pipe *make_pipes(char **cpy, int *iterator)
 	current->next = NULL;
 	if (*cpy)
 		*cpy = NULL;
-	return(current);
+	return (current);
 }
 
-void find_pipes(t_set *set)
+void	find_pipes(t_set *set)
 {
-	t_pipe *ret;
-	int iterator;
-	int value;
-	char *cpy;
-	int inquote;
-	char *str;
+	t_pipe	*ret;
+	int		iterator;
+	int		value;
+	int		inquote;
+	char	*cpy;
+	char	*str;
 
 	cpy = NULL;
 	value = 0;
@@ -64,9 +63,9 @@ void find_pipes(t_set *set)
 	str = set->raw_text;
 	while (str[++iterator])
 	{
-		//printf("%s\n", cpy);													// DELETE
+		// printf("%s\n", cpy);
 		in_quotes(str[iterator], &inquote);
-		//printf("CHAR = %c\tINT = %d\n", str[iterator], inquote);				// DELETE
+		// printf("CHAR = %c\tINT = %d\n", str[iterator], inquote);
 		if (str[iterator] == '|' && inquote == 0)
 			pipe_to_back(make_pipes(&cpy, &iterator), &ret);
 		if ((iterator == 0 || str[iterator - 1] != '\0'))

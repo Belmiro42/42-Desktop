@@ -1,15 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   4.5_Wildcard_Split.c                               :+:      :+:    :+:   */
+/*   4_*_UTILS.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 11:14:32 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/01 18:23:19 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:40:35 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -17,7 +16,7 @@ static int	numstring(char const *s1, char c)
 {
 	int	count;
 	int	is_on_delimiter;
-	int quote;
+	int	quote;
 
 	quote = 0;
 	count = 0;
@@ -42,8 +41,8 @@ static int	numstring(char const *s1, char c)
 static int	numchar(char const *str, char c, int i)
 {
 	int	length;
-	int quote;
-	int change;
+	int	quote;
+	int	change;
 
 	length = 0;
 	quote = 0;
@@ -74,8 +73,8 @@ static char	**affect(char const *str, char **ret, char c, int l)
 	int	i;
 	int	j;
 	int	k;
-	int quote;
-	int change;
+	int	quote;
+	int	change;
 
 	i = 0;
 	j = 0;

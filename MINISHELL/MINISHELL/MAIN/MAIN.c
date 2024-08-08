@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:31:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 14:27:56 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:10:09 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 //¡¡¡¡TODO: https://stackoverflow.com/questions/5412761/using-colors-with-printf
 
-//LEGACY CODE -PRINT STRUCTURE
-static void print_sets(t_set *cpy)
+// LEGACY CODE -PRINT STRUCTURE
+static void	print_sets(t_set *cpy)
 {
-	t_pipe *pipe;
-	t_input *input;
-	t_output *output;
-	char	**args;
-	int i;
+	t_pipe		*pipe;
+	t_input		*input;
+	t_output	*output;
+	char		**args;
+	int			i;
 
-	while(cpy)
+	while (cpy)
 	{
 		printf("PIPESET %s\n", cpy->raw_text);
 		pipe = cpy->pipe;
@@ -58,7 +58,7 @@ static void print_sets(t_set *cpy)
 	}
 }
 
-void process_input(char *input, t_set **set, t_env *environment, int *exit)
+void	process_input(char *input, t_set **set, t_env *environment, int *exit)
 {
 	if (input[0] != 0)
 	{
@@ -75,8 +75,8 @@ void process_input(char *input, t_set **set, t_env *environment, int *exit)
 	free(input);
 }
 
-//DESCRIPTION: MAIN
-int main(int argc, char **argv, char **envp)
+// DESCRIPTION: MAIN
+int	main(int argc, char **argv, char **envp)
 {
 	char	*input;
 	int		exit_code;
@@ -88,15 +88,14 @@ int main(int argc, char **argv, char **envp)
 	environment = create_env_variables(envp, argc, argv);
 	while (true)
 	{
-		if (!(input = readline("\nWATCHU WAN>")))
+		input = readline("\x1B[37m\nWATCHU WAN> ");
+		if (!input)
 			break ;
 		process_input(input, &set, environment, &exit_code);
 	}
 	free_env(environment);
-
-	return(exit_code);
+	return (exit_code);
 }
-
 
 //  LEGACY CODE - EXPORT TEST
 /*int main(int argc, char **argv, char **envp)
@@ -195,7 +194,6 @@ int main(int argc, char **argv, char **envp)
 	return(0);
 }*/
 
-
 // LEGACY CODE - EXIT TEST
 /*int main(int argc, char **argv, char **envp)
 {
@@ -220,7 +218,7 @@ int main(int argc, char **argv, char **envp)
 	return((unsigned long)tq);
 }*/
 
-//LEGACY CODE - PWD TEST
+// LEGACY CODE - PWD TEST
 /*int main(int argc, char **argv, char **envp)
 {
 	//char	*input;
@@ -238,7 +236,7 @@ int main(int argc, char **argv, char **envp)
 	return((unsigned long)tq);
 }*/
 
-//LEGACY CODE - CD TEST
+// LEGACY CODE - CD TEST
 /*int main(int argc, char **argv, char **envp)
 {
 	//char	*input;

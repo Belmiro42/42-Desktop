@@ -6,18 +6,18 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:02:21 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 14:11:13 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:40:49 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 // DESCRIPTION: SYNOPSIS
-//env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]
-//For minishell we want no arguments.
+// env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]
+// For minishell we want no arguments.
 int	env_builtin(char **args, t_env *environment)
 {
-	t_env *cpy;
+	t_env	*cpy;
 
 	cpy = environment;
 	if (ft_arrlen(args) > 2)

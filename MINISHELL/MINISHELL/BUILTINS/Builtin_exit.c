@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:05:45 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 14:11:33 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:43:26 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 // NOT SURE HOW TO EXIT THE EXECUTION
 
 //NO PROBADO
-static int get_num(char *str, t_env *environment)
+static int	get_num(char *str, t_env *environment)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (str[index])
@@ -40,24 +40,24 @@ static int get_num(char *str, t_env *environment)
 	return (index);
 }
 
-int exit_builtin(char **args, t_env *environment, t_set *set)
+int	exit_builtin(char **args, t_env *environment, t_set *set)
 {
-	int exit_code;
+	int	exit_code;
 
-	exit_code=0;
+	exit_code = 0;
 	if (ft_arrlen(args) > 1)
 	{
 		if (ft_arrlen(args) > 2)
-			{
-				ft_putstr_fd("Minishell: exit: too many arguments", 2);
-				exit_code = 1;
-				return(exit_code);
-			}
+		{
+			ft_putstr_fd("Minishell: exit: too many arguments", 2);
+			exit_code = 1;
+			return (exit_code);
+		}
 		exit_code = get_num(args[1], environment);
 	}
 	free_parser_struct(set, &set, environment);
 	free_env(environment);
-	printf("LEFT IN EXIT");
+	ft_putstr_fd("LEFT IN EXIT", 1);
 	exit(exit_code);
 }
 

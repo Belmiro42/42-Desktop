@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 02:01:19 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/06/17 13:03:21 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:22:45 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*get_next_line(int fd)
 	current_read = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!current_read)
 		return (NULL);
-	while (bytes != 0 && !(ft_strchr(text_caches, '\n')))
+	while (bytes != 0 && !ft_strchr(text_caches, '\n'))
 	{
 		bytes = read(fd, current_read, BUFFER_SIZE);
 		if (bytes == -1)
@@ -85,6 +85,8 @@ char	*get_next_line(int fd)
 		text_caches = ft_strjoin(text_caches, current_read);
 	}
 	free(current_read);
+
+
 	current_read = return_line(text_caches);
 	text_caches = move_buffer(text_caches);
 	return (current_read);
@@ -99,9 +101,9 @@ int main()
 	char	*str;
 	int		fd;
 	int	alvaro = 5;
-	
+
 	fd = open("test.txt", O_RDONLY);
-	
+
 	while (alvaro--)
 	{
 		str = get_next_line(fd);

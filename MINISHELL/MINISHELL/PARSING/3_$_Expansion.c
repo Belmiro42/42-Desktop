@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:51:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/06 02:05:38 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:50:37 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@
 // ¡¡TODO: STRLEN STRCPY AND STRLCAT
 // TODO: MAKE SURE WE HAVE A DUPLICATE OF VAL
 
-
-
 // FUNCTION DESCRIPTION: get_var_value
 // Find Var Name From String
 // Get value from env
-char *get_var_value(int *iterator, char *input, int *quote, t_env *environment)
+char	*get_var_value(int *iterator, char *input, int *quote,
+		t_env *environment)
 {
-	char *var;
-	char *val;
-	int count;
-	char c;
+	char	*var;
+	char	*val;
+	int		count;
+	char	c;
 
 	var = NULL;
 	val = NULL;
@@ -54,10 +53,10 @@ char *get_var_value(int *iterator, char *input, int *quote, t_env *environment)
 // iterator to take us through the input of the command. Recursiveness is not
 // necessary as when you add a variable within a variable it already expands out
 // when assigning value
-void evaluate_var(char *input, char **output, int *quote, t_env *env)
+void	evaluate_var(char *input, char **output, int *quote, t_env *env)
 {
-	int iter;
-	char *value;
+	int		iter;
+	char	*value;
 
 	iter = 0;
 	while (input[iter])
@@ -69,23 +68,26 @@ void evaluate_var(char *input, char **output, int *quote, t_env *env)
 			iter += 1;
 		}
 		else if ((input[iter] == '$' && *quote != 1 && input[iter + 1] != '\0'
-			&& (ft_isalpha(input[iter + 1]) || input[iter + 1] == 95)))
+				&& (ft_isalpha(input[iter + 1]) || input[iter + 1] == 95)))
 		{
-			value = get_var_value(&iter, input, quote, env); 					// NOTE: DOES NOT ITERATE BEYOND SPECIAL CHARACTERS
+			value = get_var_value(&iter, input, quote, env);
+			// NOTE: DOES NOT ITERATE BEYOND SPECIAL CHARACTERS
 			*output = ft_strjoin(*output, value, DEL, DEL);
 		}
 		else
 		{
-			*output = add_character(input[iter], *output, 1); 					// NOTE: LITERALLY ADD THE CHARACTER TO THE STRING NOTE: IF NULL MAKE FIRST
+			*output = add_character(input[iter], *output, 1);
+			// NOTE: LITERALLY ADD THE CHARACTER TO THE STRING NOTE: IF NULL MAKE FIRST
 		}
 		iter++;
 	}
 }
+
 // FUNCTION DESCRIPTION: parsing primitive
-char *variable_expansion(char *input, t_env *environment)
+char	*variable_expansion(char *input, t_env *environment)
 {
-	int quote;
-	char *output;
+	int		quote;
+	char	*output;
 
 	quote = 0;
 	output = NULL;

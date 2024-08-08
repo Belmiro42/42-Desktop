@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Utils.c                                            :+:      :+:    :+:   */
+/*   Env_Utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 07:54:09 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/07 00:55:32 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:41:09 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	new_val_env(char *key, char *new_val, t_env **environment)
 
 /*void	new_val_env(char *key, char *new_val, t_env **environment)
 {
-//TODO: UNTESTED
 	t_env	*cpy;
 	t_env	*new;
 
+//TODO: UNTESTED
 	cpy = *environment;
 	while (cpy)
 	{
@@ -75,13 +75,12 @@ void	new_val_env(char *key, char *new_val, t_env **environment)
 	new->next = NULL;
 	cpy = *environment;
 	if (!cpy)
-		return ((void)(*environment = new));									// CHECK LOGIC HERE
+		return ((void)(*environment = new));
 	while (cpy->next)
 		cpy = cpy->next;
 	if (cpy)
 		cpy->next = new;
 }*/
-
 bool	key_exists_env(char *key, t_env *environment)
 {
 	if (get_val_env(key, environment))
@@ -89,9 +88,9 @@ bool	key_exists_env(char *key, t_env *environment)
 	return (false);
 }
 
+// TODO: TODO: UNTESTED
 void	del_var_env(char *key, t_env **environment)
 {
-// TODO: TODO: UNTESTED
 	t_env	*cpy;
 	t_env	*tmp;
 

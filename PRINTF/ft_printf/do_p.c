@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:37 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/06/19 19:00:15 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:57:21 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	do_p_recursive(void *puntero,
 			unsigned int *index, unsigned int *length)
 {
 	char	*digits;
-	size_t	number;
+	unsigned int	number;
 
-	number = (size_t)puntero;
+	number = (unsigned int)puntero;
 	digits = "0123456789abcdef";
 	if ((number / 16) == 0)
 	{
