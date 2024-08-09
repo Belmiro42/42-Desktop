@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:31:50 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 23:35:30 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/08 23:40:25 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	print_sets(t_set *cpy)
 			printf("\n");
 			while (output)
 			{
-				printf("\t\tOUT: %d\t%s\n", output->write, output->filename);
+				printf("\t\tOUT: %d\t%s\n", output->append, output->filename);
 				output = output->next;
 			}
 			printf("\n");
@@ -66,8 +66,8 @@ void	process_input(char *input, t_set **set, t_env *environment, int *exit)
 		{
 			*set = construct_parser_struct(input, environment);
 			print_sets(*set);
-			//execucion aqui
-			//execucion(set, environment);
+			// execucion aqui
+			// execucion(set, environment);
 			free_parser_struct(*set, exit, environment);
 		}
 		else

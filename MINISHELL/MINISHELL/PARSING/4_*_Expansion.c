@@ -6,7 +6,7 @@
 /*   By: bmatos-d <bmatos-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 03:01:41 by bmatos-d          #+#    #+#             */
-/*   Updated: 2024/08/08 19:13:30 by bmatos-d         ###   ########.fr       */
+/*   Updated: 2024/08/09 01:02:16 by bmatos-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ void	find_prefix(char *str, char **prefix, int *back)
 
 void	find_all_matching(char **matching, char *prefix, char **insert)
 {
-	char			*cwd;
-	char			*current;
 	char			*cpy;
+	char			*current;
 	struct dirent	*entry;
 	int				index;
 	DIR				*dir;
 
-	cwd = NULL;
-	getcwd(cwd, 0);
-	dir = opendir(cwd); // TODO: PROTECT
+	cpy = NULL;
+	cpy = getcwd(cpy, 0);
+	dir = opendir(cpy); // TODO: PROTECT
+	free(cpy);
 	entry = readdir(dir);
 	while (entry != NULL)
 	{
@@ -56,11 +56,15 @@ void	find_all_matching(char **matching, char *prefix, char **insert)
 		cpy = current;
 		index = 0;
 		while (matching[index] && current)
+		{
+			printf("MATCHING %s", matching[index]);
 			current = ft_strnstr(current, matching[index++], strlen(current));
+		}
 		if (current)
 			*insert = ft_strjoin(*insert, ft_strjoin(prefix, ft_strjoin("\'",
 							ft_strjoin(cpy, "\'", KEEP, KEEP), KEEP, DEL), KEEP,
 						DEL), DEL, DEL);
+		entry = readdir(dir);
 		free(cpy);
 	}
 	closedir(dir);
@@ -110,19 +114,20 @@ char	*expand_wildcards(char *str)
 	char	*pattern;
 	char	*output;
 	char	**matching;
+	int		strint;
 
 	output = ft_strdup("");
 	iterator = 0;
 	quotes = 0;
 	start = 0;
 	temp = 0;
-	// printf("%s\n\n", str);
-	/*	int strint = 0;
-		while (strint < strlen(str))
-		{
-			printf("%d\t%c\n", strint, str[strint]);
-			strint++;
-		}*/
+	printf("%s\n\n", str);
+	strint = 0;
+	while (strint < (int)strlen(str))
+	{
+		printf("%d\t%c\n", strint, str[strint]);
+		strint++;
+	}
 	while (str[iterator])
 	{
 		change = in_quotes(str[iterator], &quotes);
@@ -130,28 +135,28 @@ char	*expand_wildcards(char *str)
 		{
 			insert = ft_strdup("");
 			pattern = find_pattern(str, &iterator, &start);
-			// printf("START%d\n", start);
+			printf("START%d\n", start);
 			find_prefix(str, &prefix, &start);
-			// printf("TEMP %d\tSTART %d\tITER %d\n", temp, start, iterator);
-			output = output_insert(str, temp, start, output);
-			// printf("OUTPUT %s\n", output);
+			printf("TEMP %d\tSTART %d\tITER %d\n", temp, start, iterator);
+			// output = output_insert(str, temp, start, output);
+			printf("OUTPUT %s\n", output);
 			matching = wildcard_split(pattern, '*');
 			find_all_matching(matching, prefix, &insert);
 			temp = iterator - 1;
-			/*			if (strlen(insert) > 1 )
-							printf("INSERT %s\n", insert);*/
+			// if (strlen(insert) >= 1)
+			printf("INSERT %s\n", insert);
 			output = ft_strjoin(output, insert, 1, 1);
-			// printf("OUTPUT %s\n\n", output);
+			printf("OUTPUT %s\n\n", output);
 			free(pattern);
 			free(prefix);
 		}
 		if (str[iterator])
 			iterator++;
 	}
-	// printf("Temp %d\tStart %d\tLen %d\n", temp, start, (int)strlen(str));
+	printf("Temp %d\tStart %d\tLen %d\n", temp, start, (int)strlen(str));
 	output = ft_strjoin(output, ft_substr(str, temp, strlen(str) - temp), DEL,
 			DEL);
-	// printf("FINAL %s\n", output);
+	printf("OUTPUT %s\n", output);
 	free(str);
 	return (output);
 }
